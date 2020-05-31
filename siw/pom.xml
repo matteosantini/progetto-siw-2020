@@ -8,7 +8,7 @@
 		<version>2.3.0.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>it.uniroma3.siw.progetto.santini.mancino</groupId>
+	<groupId>it.uniroma3.progetto2020</groupId>
 	<artifactId>siw</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>siw</name>
@@ -16,6 +16,7 @@
 
 	<properties>
 		<java.version>1.8</java.version>
+    	<start-class>it.uniroma3.progetto2020</start-class>
 	</properties>
 
 	<dependencies>

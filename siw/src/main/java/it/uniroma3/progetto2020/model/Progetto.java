@@ -31,7 +31,7 @@ public class Progetto {
 	private Utente proprietario;	
 	
 	@ManyToMany
-	private List<Utente> utentiautorizzati;
+	private List<Utente> utentiAutorizzati;
 
 	public Progetto(String nome, Date datadiinizio, List<Task> taskProgetto, Utente proprietario,
 			List<Utente> utentiautorizzati) {
@@ -40,7 +40,7 @@ public class Progetto {
 		this.datadiinizio = datadiinizio;
 		this.taskProgetto = taskProgetto;
 		this.proprietario = proprietario;
-		this.utentiautorizzati = utentiautorizzati;
+		this.utentiAutorizzati = utentiautorizzati;
 	}
 
 	public Progetto() {
@@ -81,11 +81,11 @@ public class Progetto {
 	}
 
 	public List<Utente> getUtentiautorizzati() {
-		return utentiautorizzati;
+		return utentiAutorizzati;
 	}
 
 	public void setUtentiautorizzati(List<Utente> utentiautorizzati) {
-		this.utentiautorizzati = utentiautorizzati;
+		this.utentiAutorizzati = utentiautorizzati;
 	}	
 	
 }

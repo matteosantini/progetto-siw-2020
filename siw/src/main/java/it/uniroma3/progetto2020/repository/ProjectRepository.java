@@ -9,15 +9,13 @@ import it.uniroma3.progetto2020.model.Utente;
 
 public interface ProjectRepository {
 	
-	public void creaProgetto(String nome, Date datadiinizio, List<Task> taskProgetto, Utente proprietario,
-			List<Utente> utentiautorizzati);
+	public void creaProgetto(Progetto progetto);
 	
 	public List<Progetto> getProgettiByUtente(Long id);
 	
 	public List<Progetto> getProgettiCondivisi(Long id);
 	
-	public void editProgetto(Long id, String nome, Date datadiinizio, List<Task> taskProgetto, Utente proprietario,
-			List<Utente> utentiautorizzati);
+	public void editProgetto(Progetto progetto);
 	
 	public void deleteProgetto(Long id);
 	

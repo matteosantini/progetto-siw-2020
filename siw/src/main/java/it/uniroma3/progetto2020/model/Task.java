@@ -23,6 +23,8 @@ public class Task {
 	
 	private Date creazione;
 	
+	private String colore;
+	
 	@OneToOne
 	private Utente prorietario;
 
@@ -31,12 +33,13 @@ public class Task {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Task(String nome, String descrizione, Date creazione, Utente prorietario) {
+	public Task(String nome, String descrizione, Date creazione, Utente prorietario,String colore) {
 		super();
 		this.nome = nome;
 		this.descrizione = descrizione;
 		this.creazione = creazione;
 		this.prorietario = prorietario;
+		this.colore=colore;
 	}
 
 	public Long getId() {
@@ -77,6 +80,14 @@ public class Task {
 
 	public void setProrietario(Utente prorietario) {
 		this.prorietario = prorietario;
+	}
+	
+	public void setColore(String colore) {
+		this.colore=colore;
+	}
+	
+	public String getColore() {
+		return this.colore;
 	}
 
 	@Override

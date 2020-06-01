@@ -14,7 +14,7 @@ public class UtenteController {
 	@Autowired
 	private UtenteService utenteService;
 	
-	@RequestMapping("/signup",method=RequestType.GET)
+	@RequestMapping("/signup")
 	public String signup(Model model) {
 		
 		

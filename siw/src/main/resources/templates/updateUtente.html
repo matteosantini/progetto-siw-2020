@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: headerfiles(title=#{title.updateUtente})"> </head>
+<body>
+	<header th:replace="fragments/base.html :: intestazione"></header>
+	<div>
+		<h4>Inserisci i dati di un nuovo utente</h4>
+	</div>
+	<form th:action="@{/utenti}" method="POST" th:object="${utente}">
+		<div th:if="${#fields.hasGlobalErrors()}">
+  			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
+		</div>		
+		<table>
+			<tr>
+				<td>Username:</td>
+				<td><input type="text" th:field="*{username}" /></td>
+				<td th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></td>
+			</tr>		
+			<tr>
+				<td>Password:</td>
+				<td><input type="text" th:field="*{password}" /></td>
+				<td th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></td>
+			</tr>
+			<tr>
+				<td>Nome:</td>
+				<td><input type="text" th:field="*{nome}" /></td>
+				<td th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></td>
+			</tr>
+			<tr>
+				<td>Cognome:</td>
+				<td><input type="text" th:field="*{cognome}" /></td>
+				<td th:if="${#fields.hasErrors('cognome')}" th:errors="*{cognome}"></td>
+			</tr>
+			<tr>
+				<td><button type="submit">Invio</button></td>
+			</tr>
+		</table>
+	</form>
+	<footer th:replace="fragments/base.html :: fondo"></footer>
+</body>
+</html>

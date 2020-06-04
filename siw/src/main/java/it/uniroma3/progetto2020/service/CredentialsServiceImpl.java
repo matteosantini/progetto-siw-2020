@@ -3,6 +3,7 @@ package it.uniroma3.progetto2020.service;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import it.uniroma3.progetto2020.model.Credentials;
@@ -13,6 +14,9 @@ public class CredentialsServiceImpl implements CredentialService {
 	
 	@Autowired
 	private CredentialsRepository credentialsRepository;
+	
+	@Autowired
+	private  PasswordEncoder passwordEncoder;
 
 	@Override
 	public Credentials getCredentials(long id) {
@@ -27,6 +31,8 @@ public class CredentialsServiceImpl implements CredentialService {
 	@Override
 	@Transactional
 	public void saveCredential(Credentials credentials) {
+		credentials.setRole(Credentials.DEFAULT_ROLE);
+		credentials.setPassword(this.passwordEncoder.encode(credentials.getPassword()));
 		this.credentialsRepository.save(credentials);
 
 	}

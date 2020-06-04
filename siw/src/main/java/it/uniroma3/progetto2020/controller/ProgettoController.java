@@ -24,6 +24,7 @@ public class ProgettoController {
 	@RequestMapping(value = "/progetto", method = RequestMethod.GET)
 	public String progetto(Model model) {
 		model.addAttribute("progetto", new Progetto());
+		model.addAttribute("progetti", this.progettoService.getAllProgetto());
 		return "progetto";
 	}
 	

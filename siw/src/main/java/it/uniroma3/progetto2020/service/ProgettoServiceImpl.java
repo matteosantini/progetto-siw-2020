@@ -3,19 +3,33 @@ package it.uniroma3.progetto2020.service;
 import java.util.List;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import it.uniroma3.progetto2020.model.Progetto;
+import it.uniroma3.progetto2020.repository.ProjectRepository;
+import it.uniroma3.progetto2020.repository.UtenteRepository;
 
 @Service
 public class ProgettoServiceImpl implements ProjectService {
-
+	
+	@Autowired
+	private ProjectRepository progettoRepository;
+	
 	@Override
-	public void creaProgetto(Progetto progetto) {
-		// TODO Auto-generated method stub
-
+	@Transactional
+	public void saveProgetto(Progetto progetto) {
+		this.progettoRepository.save(progetto);
+	}
+	
+	@Override
+	public Iterable<Progetto> getAllProgetto() {
+		return this.progettoRepository.findAll();
 	}
 
+	
 	@Override
 	public List<Progetto> getProgettiByUtente(Long id) {
 		// TODO Auto-generated method stub
@@ -117,5 +131,6 @@ public class ProgettoServiceImpl implements ProjectService {
 		// TODO Auto-generated method stub
 		
 	}
+
 
 }

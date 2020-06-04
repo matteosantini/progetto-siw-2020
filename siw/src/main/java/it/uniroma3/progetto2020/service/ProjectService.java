@@ -14,4 +14,5 @@ public interface ProjectService{
 	public void deleteProgetto(Long id);
 	public void aggiungiTag();
 	public void condiviProgetto(Long id);
+	public Iterable<Progetto> getAllProgetto();
 }

@@ -1,0 +1,105 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en" th:replace="fragments/header :: header">
+</head>
+<body>
+	<div class="card">
+
+		<div class="card-header">
+			<div class="row">
+				<div class="col-1">
+					<img width="60" height="60"
+						src="https://image.flaticon.com/icons/svg/1934/1934025.svg"
+						class="loaded">
+				</div>
+				<div class="col-9">
+					<b><h1 class="display-4">Lista progetti</h1></b>
+				</div>
+				<div class="col-2">
+					<button onclick="showModalAddProject();" class="btn btn-primary"
+						style="margin-top: 5%">ADD PROGETTO</button>
+				</div>
+			</div>
+		</div>
+		<div class="card-body">
+			<table class="table table-striped">
+				<thead style="background-color: #007bff; color: white">
+					<tr>
+						<th scope="col">#</th>
+						<th scope="col">First</th>
+						<th scope="col">Last</th>
+						<th scope="col">Handle</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th scope="row">1</th>
+						<td>Mark</td>
+						<td>Otto</td>
+						<td>@mdo</td>
+					</tr>
+					<tr>
+						<th scope="row">2</th>
+						<td>Jacob</td>
+						<td>Thornton</td>
+						<td>@fat</td>
+					</tr>
+					<tr>
+						<th scope="row">3</th>
+						<td>Larry</td>
+						<td>the Bird</td>
+						<td>@twitter</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+</body>
+
+<!-- MODALE ADD PROGETTO -->
+<div class="modal" tabindex="-1" role="dialog" id="add-projectmodal">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Aggiungi Progetto</h5>
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<form action="#" th:action="@{/progetto}" th:object="${progetto}" method="post">
+			<div class="modal-body">
+				<div class="input-group mb-3">
+					<div class="input-group-prepend">
+						<span class="input-group-text" id="basic-addon1">Nome:</span>
+					</div>
+					<input type="text" class="form-control" placeholder="Nome progetto"
+						aria-label="Username" aria-describedby="basic-addon1" th:field="*{nome}">
+				</div>
+				
+				<div class="input-group mb-3">
+					<div class="input-group-prepend">
+						<span class="input-group-text" id="basic-addon1">Inizio:</span>
+					</div>
+					<input type="date" id="data-progetto" class="form-control" placeholder="Nome progetto"
+						aria-label="Username" aria-describedby="basic-addon1" th:field="*{datadiinizio}">
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<button type="submit"  class="btn btn-primary">Salva</button>
+			</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+
+<script type="text/javascript">
+	function showModalAddProject() {
+		$('#add-projectmodal').modal('show');
+	}
+</script>
+
+<div lang="en" th:replace="fragments/footer :: footer"></div>
+</html>

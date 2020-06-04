@@ -5,6 +5,7 @@ package it.uniroma3.progetto2020.model;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,6 +13,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.lang.Nullable;
 
 @Entity
 public class Progetto {
@@ -22,6 +26,7 @@ public class Progetto {
 	
 	private String nome;
 	
+	@DateTimeFormat(pattern = "YYYY-mm-dd")
 	private Date datadiinizio;
 	
 	@OneToMany

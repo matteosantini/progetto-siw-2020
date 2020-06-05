@@ -9,7 +9,6 @@ public interface UtenteService {
 	
 	public Optional<Utente> getUtenteById(Long id);
 	public void saveUtente(Utente utente);
-	public Utente getUtenteByUsername(String username);
 	public void deleteUtente(Long id);
 	public Iterable<Utente> getAllUtenti();
 

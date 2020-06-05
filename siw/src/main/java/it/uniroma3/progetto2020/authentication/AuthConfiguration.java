@@ -31,11 +31,11 @@ public class AuthConfiguration extends WebSecurityConfigurerAdapter{
                 // authorization paragraph: here we define WHO can access WHICH pages
                 .authorizeRequests()
                 // anyone (authenticated or not) can access the welcome page, the login page, and the registration page
-                .antMatchers(HttpMethod.GET, "/", "/index", "/login", "/utenti/register", "/progetto").permitAll()
+                .antMatchers(HttpMethod.GET, "/", "/index", "/login", "/utenti/register", "/progetto","/utenti/update").permitAll()
                 // anyone (authenticated or not) can send POST requests to the login endpoint and the register endpoint
-                .antMatchers(HttpMethod.POST, "/login", "/utenti/register", "/progetto").permitAll()
+                .antMatchers(HttpMethod.POST, "/login", "/utenti/register", "/progetto","/utenti/update").permitAll()
                 // only authenticated users with ADMIN authority can access the admin pag
-                .antMatchers(HttpMethod.GET, "/admin").hasAnyAuthority(ADMIN_ROLE)
+                .antMatchers(HttpMethod.GET, "/admin","/utenti").hasAnyAuthority(ADMIN_ROLE)
                 // all authenticated users can access all the remaining other pages
                 .anyRequest().authenticated()
 
@@ -43,7 +43,7 @@ public class AuthConfiguration extends WebSecurityConfigurerAdapter{
                 // use formlogin protocol to perform login
                 .and().formLogin()
                 // after login is successful, redirect to the logged user homepage
-                .defaultSuccessUrl("/home")
+                .defaultSuccessUrl("/index")
 
                 // NOTE: using the default configurat on, the /login endpoint is mapped to an auto-generated login page.
                 // If we wanted to create a login page of own page, we would need to

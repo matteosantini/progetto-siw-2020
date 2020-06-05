@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org">
+<head>
+<title>TaskManager</title>
+</head>
+
+<body>
+	<h1>Il tuo profilo</h1>
+	<table>
+		<tr>
+			<td>Username</td>
+			<td th:text="${credentials.username}">...</td>
+		</tr>
+		<tr>
+			<td>Nome</td>
+			<td th:text="${utente.nome}">...</td>
+		</tr>
+		<tr>
+			<td>Cognome</td>
+			<td th:text="${utente.cognome}">...</td>
+		</tr>
+		<tr>
+			<td>Role</td>
+			<td th:text="${credentials.role}">...</td>
+		</tr>
+		<tr>
+			<td>Registered at:</td>
+			<td th:text="${utente.creazione}">...</td>
+		</tr>
+		<tr>
+			<td>Last Update at:</td>
+			<td th:text="${utente.modifica}">...</td>
+		</tr>
+	</table>
+	<div>
+		<a href="/progetti">Progetti</a>
+	</div>
+	<div>
+	<a href="/update/${utente.id}">Edit</a>
+	</div>
+</body>
+</html>

@@ -24,9 +24,6 @@ public class AuthController {
     
 	@RequestMapping(value="/utenti/register",method=RequestMethod.GET)
 	public String signup(Model model) {
-//		model.addAttribute("utente", new Utente());
-//		model.addAttribute("credentials",new Credentials());
-//		return "addUtente";
 		model.addAttribute("userForm", new Utente());
         model.addAttribute("credentialsForm", new Credentials());
 
@@ -37,7 +34,7 @@ public class AuthController {
 	public String signup(@ModelAttribute("utente") Utente utente,@ModelAttribute("credentials") Credentials credentials) {
 		credentials.setUtente(utente);
 		this.credentialService.saveCredential(credentials);
-		return "utenti";	
+		return "redirect:/utenti";	
 	}
 
 }

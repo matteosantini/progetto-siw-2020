@@ -2,18 +2,15 @@ package it.uniroma3.progetto2020.model;
 
 
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
-
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-import javax.persistence.Transient;
 
 @Entity
 public class Utente {
@@ -22,15 +19,10 @@ public class Utente {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 
-	@Column(nullable=false)
-	private String username;
-
-	@Transient
-	private String password;
-
 	private String nome;
 	private String cognome;
-	private Date creazione;
+	private LocalDateTime creazione;
+	private LocalDateTime modifica;
 
 	@OneToMany(mappedBy="proprietario",cascade=CascadeType.ALL)
 	private List<Progetto> progettiPosseduti;
@@ -40,17 +32,17 @@ public class Utente {
 
 	public Utente() {
 		super();
-		// TODO Auto-generated constructor stub
+		this.creazione=LocalDateTime.now();
+		this.modifica=LocalDateTime.now();
+		
 	}
 
-	public Utente(String username, String password, String nome, String cognome, Date creazione,
+	public Utente(String nome, String cognome,
 			List<Progetto> progettiPosseduti, List<Progetto> progettiAutorizzati) {
 		super();
-		this.username = username;
-		this.password = password;
 		this.nome = nome;
 		this.cognome = cognome;
-		this.creazione = creazione;
+		this.creazione = LocalDateTime.now();
 		this.progettiPosseduti = progettiPosseduti;
 		this.progettiAutorizzati = progettiAutorizzati;
 	}
@@ -63,23 +55,7 @@ public class Utente {
 		this.id = id;
 	}
 
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public String getNome() {
+		public String getNome() {
 		return nome;
 	}
 
@@ -95,11 +71,11 @@ public class Utente {
 		this.cognome = cognome;
 	}
 
-	public Date getCreazione() {
+	public LocalDateTime getCreazione() {
 		return creazione;
 	}
 
-	public void setCreazione(Date creazione) {
+	public void setCreazione(LocalDateTime creazione) {
 		this.creazione = creazione;
 	}
 
@@ -119,6 +95,14 @@ public class Utente {
 		this.progettiAutorizzati = progettiAutorizzati;
 	}
 
+	public LocalDateTime getModifica() {
+		return modifica;
+	}
+
+	public void setModifica(LocalDateTime modifica) {
+		this.modifica = modifica;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -126,10 +110,8 @@ public class Utente {
 		result = prime * result + ((cognome == null) ? 0 : cognome.hashCode());
 		result = prime * result + ((creazione == null) ? 0 : creazione.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
-		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((progettiAutorizzati == null) ? 0 : progettiAutorizzati.hashCode());
 		result = prime * result + ((progettiPosseduti == null) ? 0 : progettiPosseduti.hashCode());
-		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		return result;
 	}
 
@@ -157,11 +139,7 @@ public class Utente {
 				return false;
 		} else if (!nome.equals(other.nome))
 			return false;
-		if (password == null) {
-			if (other.password != null)
-				return false;
-		} else if (!password.equals(other.password))
-			return false;
+		
 		if (progettiAutorizzati == null) {
 			if (other.progettiAutorizzati != null)
 				return false;
@@ -171,11 +149,6 @@ public class Utente {
 			if (other.progettiPosseduti != null)
 				return false;
 		} else if (!progettiPosseduti.equals(other.progettiPosseduti))
-			return false;
-		if (username == null) {
-			if (other.username != null)
-				return false;
-		} else if (!username.equals(other.username))
 			return false;
 		return true;
 	}

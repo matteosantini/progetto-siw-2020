@@ -31,11 +31,6 @@ public class UtenteServiceImpl implements UtenteService {
 	}
 
 	@Override
-	public Utente getUtenteByUsername(String username) {
-		return this.utenteRepository.findByUsername(username);
-	}
-
-	@Override
 	@Transactional
 	public void deleteUtente(Long id) {
 		this.utenteRepository.deleteById(id);

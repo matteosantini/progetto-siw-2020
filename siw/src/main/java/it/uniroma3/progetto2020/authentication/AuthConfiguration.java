@@ -45,7 +45,7 @@ public class AuthConfiguration extends WebSecurityConfigurerAdapter{
                 // after login is successful, redirect to the logged user homepage
                 .defaultSuccessUrl("/home")
 
-                // NOTE: using the default configuration, the /login endpoint is mapped to an auto-generated login page.
+                // NOTE: using the default configurat on, the /login endpoint is mapped to an auto-generated login page.
                 // If we wanted to create a login page of own page, we would need to
                 // - use the .loginPage() method in this configuration
                 // - write a controller method that returns our login view when a GET method is sent to /login

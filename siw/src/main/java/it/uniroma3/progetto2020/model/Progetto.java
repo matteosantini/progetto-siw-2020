@@ -17,6 +17,7 @@ import javax.persistence.OneToMany;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.lang.Nullable;
 
+
 @Entity
 public class Progetto {
 
@@ -26,7 +27,7 @@ public class Progetto {
 	
 	private String nome;
 	
-	@DateTimeFormat(pattern = "YYYY-mm-dd")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date datadiinizio;
 	
 	@OneToMany

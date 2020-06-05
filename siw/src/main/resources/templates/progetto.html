@@ -24,17 +24,19 @@
 			<table class="table table-striped">
 				<thead style="background-color: #007bff; color: white">
 					<tr>
-						<th scope="col">#</th>
 						<th scope="col">Nome</th>
-						<th scope="col">Date</th>
+						<th scope="col">Data</th>
+						<th scope="col">Azioni</th>
 					</tr>
 				</thead>
-				<tbody>
-				<tr >
-					<tr th:each="progetto: ${progetti}">
-						<th scope="row">1</th>
-						<td th:text="${progetto.nome}" />
-						<td th:text="${progetto.datadiinizio}" />
+				<tbody th:with="count=0">
+					
+					<tr  th:each="progettodb: ${progetti}">
+						<td th:text="${progettodb.nome}" />
+						<td th:text="${progettodb.datadiinizio}" pattern="dd-MM-yyyy" placeholder="dd-mm-yyyy"/>
+						<td><img width="30" height="30" src="https://image.flaticon.com/icons/png/512/1160/1160515.png" style="cursor:pointer" 
+						data-placement="top" title="Modifica Progetto" class="loaded">
+						</td>
 					</tr>
 				</tbody>
 			</table>
@@ -86,6 +88,9 @@
 	function showModalAddProject() {
 		$('#add-projectmodal').modal('show');
 	}
+	$(function () {
+		  $('[data-toggle="tooltip"]').tooltip()
+	})
 </script>
 
 <div lang="en" th:replace="fragments/footer :: footer"></div>

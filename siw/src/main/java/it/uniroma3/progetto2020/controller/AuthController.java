@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import it.uniroma3.progetto2020.model.Credentials;
 import it.uniroma3.progetto2020.model.Utente;
 import it.uniroma3.progetto2020.service.CredentialService;
+import it.uniroma3.progetto2020.session.SessionData;
+
 
 @Controller
 public class AuthController {
@@ -17,11 +19,18 @@ public class AuthController {
 	@Autowired
 	private CredentialService credentialService;
 	
+    @Autowired
+    SessionData sessionData;
+    
 	@RequestMapping(value="/utenti/register",method=RequestMethod.GET)
 	public String signup(Model model) {
-		model.addAttribute("utente", new Utente());
-		model.addAttribute("credentials",new Credentials());
-		return "addUtente";
+//		model.addAttribute("utente", new Utente());
+//		model.addAttribute("credentials",new Credentials());
+//		return "addUtente";
+		model.addAttribute("userForm", new Utente());
+        model.addAttribute("credentialsForm", new Credentials());
+
+        return "registerUser";
 	}
 	
 	@RequestMapping(value="/utenti/register",method=RequestMethod.POST)

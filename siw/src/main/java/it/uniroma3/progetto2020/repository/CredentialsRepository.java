@@ -9,5 +9,5 @@ import it.uniroma3.progetto2020.model.Credentials;
 public interface CredentialsRepository extends CrudRepository<Credentials,Long>{
 	
 	public Optional<Credentials> findByUsername(String username);
- 
+	
 }

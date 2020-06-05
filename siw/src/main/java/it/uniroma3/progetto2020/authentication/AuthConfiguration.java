@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.http.HttpMethod;
@@ -18,17 +19,19 @@ import javax.sql.DataSource;
 
 @Configuration
 @EnableWebSecurity
-public class AuthConfig extends WebSecurityEnablerConfiguration{
+public class AuthConfiguration extends WebSecurityConfigurerAdapter{
 	
 	@Autowired
 	DataSource datasource;
 	
+	@Override
 	protected void configure(HttpSecurity http) throws Exception {
+		
         http
                 // authorization paragraph: here we define WHO can access WHICH pages
                 .authorizeRequests()
                 // anyone (authenticated or not) can access the welcome page, the login page, and the registration page
-                .antMatchers(HttpMethod.GET, "/", "/index", "/login", "/utenti/register").permitAll()
+                .antMatchers(HttpMethod.GET, "/", "/index", "/login", "/utenti/register", "/progetto").permitAll()
                 // anyone (authenticated or not) can send POST requests to the login endpoint and the register endpoint
                 .antMatchers(HttpMethod.POST, "/login", "/utenti/register").permitAll()
                 // only authenticated users with ADMIN authority can access the admin pag
@@ -54,6 +57,7 @@ public class AuthConfig extends WebSecurityEnablerConfiguration{
                 .logoutSuccessUrl("/index");        // after logout is successful, redirect to /index page
     }
 	
+	@Override
 	public void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.jdbcAuthentication()
         		.dataSource(this.datasource)

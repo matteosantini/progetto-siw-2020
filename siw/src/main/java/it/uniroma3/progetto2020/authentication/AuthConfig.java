@@ -28,9 +28,9 @@ public class AuthConfig extends WebSecurityEnablerConfiguration{
                 // authorization paragraph: here we define WHO can access WHICH pages
                 .authorizeRequests()
                 // anyone (authenticated or not) can access the welcome page, the login page, and the registration page
-                .antMatchers(HttpMethod.GET, "/", "/index", "/login", "/users/register").permitAll()
+                .antMatchers(HttpMethod.GET, "/", "/index", "/login", "/utenti/register").permitAll()
                 // anyone (authenticated or not) can send POST requests to the login endpoint and the register endpoint
-                .antMatchers(HttpMethod.POST, "/login", "/users/register").permitAll()
+                .antMatchers(HttpMethod.POST, "/login", "/utenti/register").permitAll()
                 // only authenticated users with ADMIN authority can access the admin pag
                 .antMatchers(HttpMethod.GET, "/admin").hasAnyAuthority(ADMIN_ROLE)
                 // all authenticated users can access all the remaining other pages
@@ -58,9 +58,9 @@ public class AuthConfig extends WebSecurityEnablerConfiguration{
         auth.jdbcAuthentication()
         		.dataSource(this.datasource)
                 //retrieve username and role
-                .authoritiesByUsernameQuery("SELECT user_name, role FROM credentials WHERE user_name=?")
+                .authoritiesByUsernameQuery("SELECT username, role FROM credentials WHERE username=?")
                 //retrieve username, password and a boolean flag specifying whether the user is enabled or not (always enabled in our case)
-                .usersByUsernameQuery("SELECT user_name, password, 1 as enabled FROM credentials WHERE user_name=?");
+                .usersByUsernameQuery("SELECT username, password, 1 as enabled FROM credentials WHERE username=?");
     }
 	
 	@Bean

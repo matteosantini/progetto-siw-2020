@@ -12,20 +12,19 @@ import it.uniroma3.progetto2020.model.Utente;
 import it.uniroma3.progetto2020.service.CredentialService;
 
 @Controller
-@RequestMapping("/auth")
 public class AuthController {
 	
 	@Autowired
 	private CredentialService credentialService;
 	
-	@RequestMapping(value="/signup",method=RequestMethod.GET)
+	@RequestMapping(value="/utenti/register",method=RequestMethod.GET)
 	public String signup(Model model) {
 		model.addAttribute("utente", new Utente());
 		model.addAttribute("credentials",new Credentials());
 		return "addUtente";
 	}
 	
-	@RequestMapping(value="/signup",method=RequestMethod.POST)
+	@RequestMapping(value="/utenti/register",method=RequestMethod.POST)
 	public String signup(@ModelAttribute("utente") Utente utente,@ModelAttribute("credentials") Credentials credentials) {
 		credentials.setUtente(utente);
 		this.credentialService.saveCredential(credentials);

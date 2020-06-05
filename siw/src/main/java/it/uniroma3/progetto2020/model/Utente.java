@@ -4,6 +4,8 @@ package it.uniroma3.progetto2020.model;
 
 import java.util.Date;
 import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -30,10 +32,10 @@ public class Utente {
 	private String cognome;
 	private Date creazione;
 
-	@OneToMany(mappedBy="proprietario")
+	@OneToMany(mappedBy="proprietario",cascade=CascadeType.ALL)
 	private List<Progetto> progettiPosseduti;
 
-	@ManyToMany(mappedBy="utentiAutorizzati")
+	@ManyToMany(mappedBy="utentiAutorizzati",cascade=CascadeType.ALL) //nel caso di errori
 	private List<Progetto> progettiAutorizzati;
 
 	public Utente() {

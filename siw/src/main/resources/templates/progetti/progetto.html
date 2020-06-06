@@ -12,7 +12,7 @@
 						class="loaded">
 				</div>
 				<div class="col-9">
-					<b><h1 class="display-4">Lista progetti</h1></b>
+					<b><h1 class="display-4">Lista Progetti</h1></b>
 				</div>
 				<div class="col-2">
 					
@@ -38,11 +38,13 @@
 						<td th:text="${progettodb.nome}" />
 						<td th:text="${progettodb.datadiinizio}" pattern="dd-MM-yyyy" placeholder="dd-mm-yyyy"/>
 						<td>
+						
 						<!-- MODIFICA  -->
-						<a th:href="@{/mod-prog/{id}(id=${progettodb.id})}">
+						<a  th:href="@{/mod-prog/{id}(id=${progettodb.id})}">	
 						<img width="30" height="30" src="https://image.flaticon.com/icons/png/512/1160/1160515.png" style="cursor:pointer" 
 						data-placement="top" title="Modifica Progetto" class="loaded">
 						</a>
+						
 						<!-- VISUALIZZA TASK -->
 						<a th:href="@{/view-prog/{id}(id=${progettodb.id})}">
 						<img width="30" height="30" src="https://image.flaticon.com/icons/svg/1269/1269549.svg" style="cursor:pointer" 
@@ -74,7 +76,7 @@
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
-			<form action="#" th:action="@{/progetto}" th:object="${progetto}" method="post">
+			<form action="#" th:action="@{/progetti}" th:object="${progetto}" method="post">
 			<div class="modal-body">
 				<div class="input-group mb-3">
 					<div class="input-group-prepend">
@@ -102,13 +104,30 @@
 </div>
 
 
+<!-- MODALE ADD PROGETTO -->
+<div class="modal" tabindex="-1" role="dialog" id="add-projectmodal">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Modifica Progetto</h5>
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div id="modal-body">
+			
+			</div>
+		</div>
+	</div>
+</div>
+
+
 <script type="text/javascript">
 	function showModalAddProject() {
 		$('#add-projectmodal').modal('show');
 	}
-	$(document).ready(function(){
-		  $('[data-toggle="tooltip"]').tooltip();   
-	});
+	
 </script>
 
 <div lang="en" th:replace="fragments/footer :: footer"></div>

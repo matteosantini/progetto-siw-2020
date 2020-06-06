@@ -28,6 +28,17 @@ public class ProgettoServiceImpl implements ProjectService {
 	public Iterable<Progetto> getAllProgetto() {
 		return this.progettoRepository.findAll();
 	}
+	
+	@Override
+	public Optional<Progetto> findProgetto(Long id) {
+		return this.progettoRepository.findById(id);
+	}
+	
+	@Override
+	@Transactional
+	public void editProgetto(Long id, String nome) {
+		progettoRepository.updateProgetto(id, nome);
+	}
 
 	
 	@Override
@@ -40,12 +51,6 @@ public class ProgettoServiceImpl implements ProjectService {
 	public List<Progetto> getProgettiCondivisi(Long id) {
 		// TODO Auto-generated method stub
 		return null;
-	}
-
-	@Override
-	public void editProgetto(Progetto progetto) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
@@ -131,6 +136,5 @@ public class ProgettoServiceImpl implements ProjectService {
 		// TODO Auto-generated method stub
 		
 	}
-
 
 }

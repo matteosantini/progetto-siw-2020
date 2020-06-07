@@ -55,6 +55,12 @@ public class ProgettoController {
 		return "progetti/body-modal-mod-progetto";
 	}
 	
+	@RequestMapping(value = "/delete-prog/{id}", method = RequestMethod.GET)
+	public String deleteProgetto(@PathVariable("id") long id, Model model) {
+		this.progettoService.deleteProgetto(id);
+		return "redirect:/progetti";
+	}
+	
 	@RequestMapping(value = "/progetti-mod-send/{id}", method = RequestMethod.POST)
 	public String editProgetto(@ModelAttribute("progettomod") Progetto progetto, @PathVariable("id") long id, Model model) {
 		progetto.setId(id);

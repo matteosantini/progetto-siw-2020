@@ -52,10 +52,16 @@
 						</a>
 						
 						<!-- ELIMINA TASK -->
-						<a th:href="@{/view-prog/{id}(id=${progettodb.id})}">
+						<a th:href="@{/delete-prog/{id}(id=${progettodb.id})}">
 						<img width="30" height="30" src="https://image.flaticon.com/icons/svg/1828/1828843.svg" style="cursor:pointer" 
 						title="Elimina task" class="loaded">
 						</a>
+						
+<!-- 						Test TASK
+						
+						<img onclick="test();" width="30" height="30" src="https://image.flaticon.com/icons/svg/1828/1828843.svg" style="cursor:pointer" 
+						title="Elimina task" class="loaded"> -->
+						
 						</td>
 					</tr>
 				</tbody>
@@ -122,13 +128,19 @@
 	</div>
 </div>
 
-
+<div lang="en" th:replace="fragments/footer :: footer"></div>
 <script type="text/javascript">
 	function showModalAddProject() {
 		$('#add-projectmodal').modal('show');
 	}
+/*  	function test(){
+		var id = 1;
+		$.get("test",{id:id}, function(data){
+			console.log(data);
+		});
+	}  */
 	
 </script>
 
-<div lang="en" th:replace="fragments/footer :: footer"></div>
+
 </html>

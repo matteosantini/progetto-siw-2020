@@ -9,20 +9,12 @@
 	<h1>Il tuo profilo</h1>
 	<table>
 		<tr>
-			<td>Username</td>
-			<td th:text="${credentials.username}">...</td>
-		</tr>
-		<tr>
 			<td>Nome</td>
 			<td th:text="${utente.nome}">...</td>
 		</tr>
 		<tr>
 			<td>Cognome</td>
 			<td th:text="${utente.cognome}">...</td>
-		</tr>
-		<tr>
-			<td>Role</td>
-			<td th:text="${credentials.role}">...</td>
 		</tr>
 		<tr>
 			<td>Registered at:</td>
@@ -32,12 +24,12 @@
 			<td>Last Update at:</td>
 			<td th:text="${utente.modifica}">...</td>
 		</tr>
+		<tr><td>
+		<a th:href="@{'utenti/update/' + ${utente.id}}">Edit</a>
+		</td></tr>
 	</table>
 	<div>
 		<a href="/progetti">Progetti</a>
-	</div>
-	<div>
-	<a href="/update/${utente.id}">Edit</a>
 	</div>
 </body>
 </html>

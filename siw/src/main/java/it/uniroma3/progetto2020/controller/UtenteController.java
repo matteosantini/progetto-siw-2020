@@ -30,10 +30,9 @@ public class UtenteController {
 		return "utenti";
 	}
 	
-	@RequestMapping("/utente")
-	public String getUtenteByUsername(Model model) {
-		model.addAttribute("utente",this.session.getLoggedUser());
-		model.addAttribute("credentials", this.session.getLoggedCredentials());
+	@RequestMapping("/utente/{id}")
+	public String getUtenteByUsername(Model model,@PathVariable Long id) {
+		model.addAttribute("utente",this.utenteService.getUtenteById(id).get());
 		return "utente";
 	}
 	

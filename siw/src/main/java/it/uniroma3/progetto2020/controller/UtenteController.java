@@ -24,6 +24,11 @@ public class UtenteController {
 	private SessionData session;
 	
 	
+	@RequestMapping("/utente/me")
+	public String myProfile(Model model) {
+		model.addAttribute("utente",this.session.getLoggedUser());
+		return "utente";
+	}
 	@RequestMapping("/utenti")
 	public String allUtenti(Model model) {
 		model.addAttribute("utenti",this.utenteService.getAllUtenti());
@@ -42,23 +47,24 @@ public class UtenteController {
 		return "updateUtente";
 	}
 	
-	@RequestMapping(value="/utenti/update/{id}",method=RequestMethod.POST)
+	@RequestMapping(value="/utenti/update",method=RequestMethod.POST)
 	public String processUpdateUtenteById(@ModelAttribute("updateUtente") Utente utente) {
+		
 		utente.setModifica(LocalDateTime.now());
 		this.utenteService.saveUtente(utente);
-		return "redirect:/utente";
+		return "redirect:/";
 	}
 	
-	@RequestMapping(value="/utenti/delete={id}",method=RequestMethod.GET)
+	@RequestMapping(value="/utenti/delete/{id}",method=RequestMethod.GET)
 	public String delete(Model model,@PathVariable("id") Long id) {
-		model.addAttribute("deleteUtente",id);
+		model.addAttribute("utente",this.utenteService.getUtenteById(id).get());
 		return "deleteUtente";
 	}
 	
 	@RequestMapping(value="/utenti/delete",method=RequestMethod.POST)
-	public String processDelete(@ModelAttribute("deleteUtente") Long id) {
-		this.utenteService.deleteUtente(id);
-		return "utenti";
+	public String processDelete(@ModelAttribute("utente") Utente utente) {
+		this.utenteService.deleteUtente(utente.getId());
+		return "redirect:/utenti";
 	}
 
 }

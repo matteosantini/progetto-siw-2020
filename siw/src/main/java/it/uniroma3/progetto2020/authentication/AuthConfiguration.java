@@ -31,11 +31,13 @@ public class AuthConfiguration extends WebSecurityConfigurerAdapter{
                 // authorization paragraph: here we define WHO can access WHICH pages
                 .authorizeRequests()
                 // anyone (authenticated or not) can access the welcome page, the login page, and the registration page
-                .antMatchers(HttpMethod.GET, "/", "/index", "/login", "/utenti/register", "/progetto","/utenti/update").permitAll()
+                .antMatchers(HttpMethod.GET, "/", "/index", "/login", "/utenti/register", "/progetto").permitAll()
                 // anyone (authenticated or not) can send POST requests to the login endpoint and the register endpoint
-                .antMatchers(HttpMethod.POST, "/login", "/utenti/register", "/progetto","/utenti/update").permitAll()
+                .antMatchers(HttpMethod.POST, "/login", "/utenti/register", "/progetto").permitAll()
                 // only authenticated users with ADMIN authority can access the admin pag
-                .antMatchers(HttpMethod.GET, "/admin","/utenti").hasAnyAuthority(ADMIN_ROLE)
+                .antMatchers(HttpMethod.GET,"/utente/me","/utenti/update").authenticated()
+                .antMatchers(HttpMethod.POST,"/utente/me","/utenti/update").authenticated()
+                .antMatchers(HttpMethod.GET, "/admin","/utenti","/utente").hasAnyAuthority(ADMIN_ROLE)
                 // all authenticated users can access all the remaining other pages
                 .anyRequest().authenticated()
 
@@ -43,7 +45,7 @@ public class AuthConfiguration extends WebSecurityConfigurerAdapter{
                 // use formlogin protocol to perform login
                 .and().formLogin()
                 // after login is successful, redirect to the logged user homepage
-                .defaultSuccessUrl("/index")
+                .defaultSuccessUrl("/")
 
                 // NOTE: using the default configurat on, the /login endpoint is mapped to an auto-generated login page.
                 // If we wanted to create a login page of own page, we would need to
@@ -54,7 +56,7 @@ public class AuthConfiguration extends WebSecurityConfigurerAdapter{
                 // logout paragraph: we are going to define here how to logout
                 .and().logout()
                 .logoutUrl("/logout")               // logout is performed when sending a GET to "/logout"
-                .logoutSuccessUrl("/index");        // after logout is successful, redirect to /index page
+                .logoutSuccessUrl("/");        // after logout is successful, redirect to /index page
     }
 	
 	@Override

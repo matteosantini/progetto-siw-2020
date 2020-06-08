@@ -1,10 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="https://www.thymeleaf.org">
-<head>
-<title>TaskManager</title>
-</head>
-
+<head lang="en" th:replace="fragments/header :: header">
 <body>
 	<h1>Il tuo profilo</h1>
 	<table>
@@ -24,12 +21,16 @@
 			<td>Last Update at:</td>
 			<td th:text="${utente.modifica}">...</td>
 		</tr>
-		<tr><td>
-		<a th:href="@{'utenti/update/' + ${utente.id}}">Edit</a>
-		</td></tr>
+		<tr>
+			<td><a th:href="@{'/utenti/update/' + ${utente.id}}">Modifica</a></td>
+		</tr>
+		<tr>
+			<td><a th:href="@{'/utenti/delete/' + ${utente.id}}">Elimina</a></td>
+		</tr>
 	</table>
 	<div>
 		<a href="/progetti">Progetti</a>
 	</div>
 </body>
+<div lang="en" th:replace="fragments/footer :: footer"></div>
 </html>

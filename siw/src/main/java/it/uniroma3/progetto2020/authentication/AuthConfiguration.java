@@ -45,7 +45,7 @@ public class AuthConfiguration extends WebSecurityConfigurerAdapter{
                 // use formlogin protocol to perform login
                 .and().formLogin()
                 // after login is successful, redirect to the logged user homepage
-                .defaultSuccessUrl("/")
+                .defaultSuccessUrl("/utente/me")
 
                 // NOTE: using the default configurat on, the /login endpoint is mapped to an auto-generated login page.
                 // If we wanted to create a login page of own page, we would need to

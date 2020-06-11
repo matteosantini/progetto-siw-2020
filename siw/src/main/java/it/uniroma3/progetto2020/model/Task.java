@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -27,7 +28,10 @@ public class Task {
 	
 	@OneToOne
 	private Utente prorietario;
-
+	
+	@ManyToOne
+	private Progetto progettotask;
+	
 	public Task() {
 		super();
 		// TODO Auto-generated constructor stub

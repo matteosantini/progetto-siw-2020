@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,7 +25,7 @@ public class Utente {
 	private LocalDateTime creazione;
 	private LocalDateTime modifica;
 
-	@OneToMany(mappedBy="proprietario",cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="proprietario",cascade=CascadeType.ALL,fetch = FetchType.EAGER)
 	private List<Progetto> progettiPosseduti;
 
 	@ManyToMany(mappedBy="utentiAutorizzati",cascade=CascadeType.ALL) //nel caso di errori

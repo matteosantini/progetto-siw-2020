@@ -5,8 +5,10 @@ package it.uniroma3.progetto2020.model;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -30,7 +32,7 @@ public class Progetto {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date datadiinizio;
 	
-	@OneToMany
+	@OneToMany(mappedBy = "progettotask", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<Task> taskProgetto;
 	
 	@ManyToOne

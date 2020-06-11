@@ -30,8 +30,8 @@ public class ProgettoServiceImpl implements ProjectService {
 	}
 	
 	@Override
-	public Optional<Progetto> findProgetto(Long id) {
-		return this.progettoRepository.findById(id);
+	public Progetto findProgetto(Long id) {
+		return this.progettoRepository.findById(id).get();
 	}
 	
 	@Override

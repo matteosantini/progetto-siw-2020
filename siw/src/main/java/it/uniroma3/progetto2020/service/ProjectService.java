@@ -9,7 +9,7 @@ import it.uniroma3.progetto2020.model.Progetto;
 
 public interface ProjectService{
 	public void saveProgetto(Progetto progetto);
-	public Optional<Progetto> findProgetto(Long id);
+	public Progetto findProgetto(Long id);
 	public List<Progetto> getProgettiByUtente(Long id);
 	public List<Progetto> getProgettiCondivisi(Long id);
 	public void editProgetto(Long id, String nome);

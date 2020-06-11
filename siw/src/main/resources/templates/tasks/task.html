@@ -1,0 +1,121 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en" th:replace="fragments/header :: header">
+</head>
+<body>
+	<div class="card">
+
+		<div class="card-header">
+			<div class="row">
+				<div class="col-1">
+					<img width="60" height="60"
+						src="https://image.flaticon.com/icons/svg/916/916926.svg"
+						class="loaded">
+				</div>
+				<div class="col-9">
+					<b><h1 class="display-4">Lista Tasks</h1></b>
+				</div>
+				<div class="col-2">
+					
+				</div>
+			</div>
+		</div>
+		<div class="card-body">
+		
+		
+		<button onclick="showModalAddProject();" class="btn btn-danger" style="float:right">+ TASK</button>
+		
+			<table class="table table-hover " style="margin-top:3%">
+				<thead style="background-color: #e0a800; color: white;">
+					<tr>
+						<th scope="col">Nome</th>
+						<th scope="col">Data</th>
+						<th scope="col">Azioni</th>
+					</tr>
+				</thead>
+				<tbody th:with="count=0">
+					
+					<tr  th:each="taskdb: ${tasks}">
+						<td th:text="${taskdb.nome}" />
+						<td th:text="" pattern="dd-MM-yyyy" placeholder="dd-mm-yyyy"/>
+						<td>
+						
+						<!-- MODIFICA  -->
+						<a  th:href="@{/mod-prog/{id}(id=${taskdb.id})}">	
+						<img width="30" height="30" src="https://image.flaticon.com/icons/png/512/1160/1160515.png" style="cursor:pointer" 
+						data-placement="top" title="Modifica task" class="loaded">
+						</a>
+						
+						<!-- VISUALIZZA TASK -->
+						<a th:href="@{/view-prog/{id}(id=${taskdb.id})}">
+						<img width="30" height="30" src="https://image.flaticon.com/icons/svg/1269/1269549.svg" style="cursor:pointer" 
+						title="Visualizza task" class="loaded">
+						</a>
+						
+						<!-- ELIMINA TASK -->
+						<a th:href="@{/delete-prog/{id}(id=${taskdb.id})}">
+						<img width="30" height="30" src="https://image.flaticon.com/icons/svg/1828/1828843.svg" style="cursor:pointer" 
+						title="Elimina task" class="loaded">
+						</a>
+						
+<!-- 						Test TASK
+						
+						<img onclick="test();" width="30" height="30" src="https://image.flaticon.com/icons/svg/1828/1828843.svg" style="cursor:pointer" 
+						title="Elimina task" class="loaded"> -->
+						
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+</body>
+
+<!-- MODALE ADD task -->
+<div class="modal" tabindex="-1" role="dialog" id="add-projectmodal">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Aggiungi task</h5>
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<form action="#" th:action="@{/task}" th:object="${task}" method="post">
+			<div class="modal-body">
+				<div class="input-group mb-3">
+					<div class="input-group-prepend">
+						<span class="input-group-text" id="basic-addon1">Nome:</span>
+					</div>
+					<input type="text" class="form-control" placeholder="Nome task"
+						aria-label="Username" aria-describedby="basic-addon1" th:field="*{nome}">
+				</div>
+				
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<button type="submit"  class="btn btn-primary">Salva</button>
+			</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+
+<div lang="en" th:replace="fragments/footer :: footer"></div>
+<script type="text/javascript">
+	function showModalAddProject() {
+		$('#add-projectmodal').modal('show');
+	}
+/*  	function test(){
+		var id = 1;
+		$.get("test",{id:id}, function(data){
+			console.log(data);
+		});
+	}  */
+	
+</script>
+
+
+</html>

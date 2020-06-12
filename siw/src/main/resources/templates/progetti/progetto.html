@@ -24,7 +24,7 @@
 		
 		<button onclick="showModalAddProject();" class="btn btn-success" style="float:right">+ PROGETTO</button>
 		
-			<table class="table table-hover">
+			<table class="table table-hover" style="margin-top: 3%">
 				<thead style="background-color: #007bff; color: white">
 					<tr>
 						<th scope="col">Nome</th>
@@ -45,18 +45,24 @@
 						data-placement="top" title="Modifica Progetto" class="loaded">
 						</a>
 						
-						<!-- VISUALIZZA TASK -->
+						<!-- VISUALIZZA PROGETTO -->
 						<a th:href="@{/view-prog/{id}(id=${progettodb.id})}">
 						<img width="30" height="30" src="https://image.flaticon.com/icons/svg/1269/1269549.svg" style="cursor:pointer" 
-						title="Visualizza task" class="loaded">
+						title="Visualizza progetto" class="loaded">
 						</a>
 						
-						<!-- ELIMINA TASK -->
+						<!-- CONDIVIDI PROGETTO -->
+						<a th:href="@{/share-prog/{id}(id=${progettodb.id})}">
+						<img width="30" height="30" src="https://image.flaticon.com/icons/png/512/916/916894.png" style="cursor:pointer" 
+						title="Condividi progetto" class="loaded">
+						</a>
+						
+						
+						<!-- ELIMINA PROGETTO -->
 						<a th:href="@{/delete-prog/{id}(id=${progettodb.id})}">
 						<img width="30" height="30" src="https://image.flaticon.com/icons/svg/1828/1828843.svg" style="cursor:pointer" 
-						title="Elimina task" class="loaded">
+						title="Elimina progetto" class="loaded">
 						</a>
-						
 <!-- 						Test TASK
 						
 						<img onclick="test();" width="30" height="30" src="https://image.flaticon.com/icons/svg/1828/1828843.svg" style="cursor:pointer" 

@@ -60,7 +60,7 @@ public class ProgettoController {
 	
 	@RequestMapping(value = "/mod-prog/{id}", method = RequestMethod.GET)
 	public String editShowProgetto(@PathVariable("id") long id, Model model) {
-		Progetto mod = this.progettoService.findProgetto(id).get();
+		Progetto mod = this.progettoService.findProgetto(id);
 		model.addAttribute("progettomod", mod);
 		return "progetti/body-modal-mod-progetto";
 	}
@@ -73,7 +73,6 @@ public class ProgettoController {
 	
 	@RequestMapping(value = "/progetti-mod-send/{id}", method = RequestMethod.POST)
 	public String editProgetto(@ModelAttribute("progettomod") Progetto progetto, @PathVariable("id") long id, Model model) {
-		progetto.setId(id);
 		this.progettoService.saveProgetto(progetto);
 		return "redirect:/progetti";
 	}

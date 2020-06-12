@@ -82,7 +82,8 @@
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
-			<form action="#" th:action="@{/task}" th:object="${task}" method="post">
+			<form action="#" th:action="@{/task-store}" th:object="${task}" method="post">
+			<input type="hidden"  name="id_progetto" th:value="${id_progetto}" readonly>
 			<div class="modal-body">
 				<div class="input-group mb-3">
 					<div class="input-group-prepend">
@@ -90,6 +91,14 @@
 					</div>
 					<input type="text" class="form-control" placeholder="Nome task"
 						aria-label="Username" aria-describedby="basic-addon1" th:field="*{nome}">
+				</div>
+				
+				<div class="input-group mb-3">
+					<div class="input-group-prepend">
+						<span class="input-group-text" id="basic-addon1">Descrizione:</span>
+					</div>
+					<input type="text" class="form-control" placeholder="Nome task"
+						aria-label="Username" aria-describedby="basic-addon1" th:field="*{descrizione}">
 				</div>
 				
 			</div>

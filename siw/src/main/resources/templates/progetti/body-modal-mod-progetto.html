@@ -15,7 +15,7 @@
 			</div>
 </div>
 <form action="#" th:action="@{/progetti-mod-send/{id}(id=${progettomod.id})}" th:object="${progettomod}" method="post">
-<input type="hidden" class="form-control" th:field="*{id}" /> 
+<input type="hidden" th:field="*{id}" value="*{id}" readonly/>
 	<div class="modal-body">
 		<div class="input-group mb-3">
 			<div class="input-group-prepend">

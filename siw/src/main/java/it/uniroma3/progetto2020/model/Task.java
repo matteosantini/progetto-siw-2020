@@ -1,6 +1,7 @@
 package it.uniroma3.progetto2020.model;
 
 import java.sql.Date;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class Task {
@@ -22,7 +25,8 @@ public class Task {
 	
 	private String descrizione;
 	
-	private Date creazione;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private LocalDateTime creazione;
 	
 	private String colore;
 	
@@ -34,16 +38,16 @@ public class Task {
 	
 	public Task() {
 		super();
-		// TODO Auto-generated constructor stub
+		this.creazione=LocalDateTime.now();
 	}
 
 	public Task(String nome, String descrizione, Date creazione, Utente prorietario,String colore) {
 		super();
 		this.nome = nome;
 		this.descrizione = descrizione;
-		this.creazione = creazione;
 		this.prorietario = prorietario;
 		this.colore=colore;
+		this.creazione=LocalDateTime.now();
 	}
 
 	public Long getId() {
@@ -70,11 +74,11 @@ public class Task {
 		this.descrizione = descrizione;
 	}
 
-	public Date getCreazione() {
+	public LocalDateTime getCreazione() {
 		return creazione;
 	}
 
-	public void setCreazione(Date creazione) {
+	public void setCreazione(LocalDateTime creazione) {
 		this.creazione = creazione;
 	}
 

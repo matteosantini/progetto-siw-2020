@@ -31,6 +31,9 @@ public class Utente {
 
 	@ManyToMany(mappedBy="utentiAutorizzati") //nel caso di errori
 	private List<Progetto> progettiAutorizzati;
+	
+	@OneToMany(mappedBy="autore",cascade=CascadeType.ALL)
+	private List<Commento> commenti;
 
 	public Utente() {
 		super();
@@ -38,6 +41,7 @@ public class Utente {
 		this.modifica=LocalDateTime.now();
 		this.progettiAutorizzati=new ArrayList<Progetto>();
 		this.progettiPosseduti=new ArrayList<Progetto>();
+		this.commenti=new ArrayList<Commento>();
 		
 	}
 

@@ -3,6 +3,7 @@ package it.uniroma3.progetto2020.model;
 
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -25,7 +26,7 @@ public class Utente {
 	private LocalDateTime creazione;
 	private LocalDateTime modifica;
 
-	@OneToMany(mappedBy="proprietario",cascade= CascadeType.ALL,fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="proprietario",cascade= CascadeType.ALL)
 	private List<Progetto> progettiPosseduti;
 
 	@ManyToMany(mappedBy="utentiAutorizzati",cascade=CascadeType.ALL) //nel caso di errori
@@ -35,6 +36,8 @@ public class Utente {
 		super();
 		this.creazione=LocalDateTime.now();
 		this.modifica=LocalDateTime.now();
+		this.progettiAutorizzati=new ArrayList<Progetto>();
+		this.progettiPosseduti=new ArrayList<Progetto>();
 		
 	}
 

@@ -36,12 +36,6 @@ public class ProgettoServiceImpl implements ProjectService {
 	
 	@Override
 	@Transactional
-	public void editProgetto(Long id, String nome) {
-		progettoRepository.updateProgetto(id, nome);
-	}
-	
-	@Override
-	@Transactional
 	public void deleteProgetto(Long id) {
 		Progetto p = this.progettoRepository.findById(id).get();
 		this.progettoRepository.delete(p);;
@@ -71,6 +65,11 @@ public class ProgettoServiceImpl implements ProjectService {
 	public void condiviProgetto(Long id) {
 		// TODO Auto-generated method stub
 
+	}
+	
+	@Override
+	public List<Progetto> getByProprietario(Long idProprietario) {
+		return this.getByProprietario(idProprietario);
 	}
 
 }

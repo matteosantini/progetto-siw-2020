@@ -12,9 +12,9 @@ public interface ProjectService{
 	public Progetto findProgetto(Long id);
 	public List<Progetto> getProgettiByUtente(Long id);
 	public List<Progetto> getProgettiCondivisi(Long id);
-	public void editProgetto(Long id, String nome);
 	public void deleteProgetto(Long id);
 	public void aggiungiTag();
 	public void condiviProgetto(Long id);
 	public Iterable<Progetto> getAllProgetto();
+	public List<Progetto> getByProprietario(Long idProprietario);
 }

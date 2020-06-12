@@ -15,7 +15,7 @@
 			</div>
 </div>
 <form action="#" th:action="@{/progetti-mod-send/{id}(id=${progettomod.id})}" th:object="${progettomod}" method="post">
-<input type="hidden" th:field="*{id}" value="*{id}" readonly/>
+<input type="hidden" th:field="*{id}" value="${id}" readonly/>
 	<div class="modal-body">
 		<div class="input-group mb-3">
 			<div class="input-group-prepend">
@@ -32,7 +32,7 @@
 			</div>
 			<input type="date" id="data-progetto" class="form-control"
 				placeholder="Nome progetto" aria-label="Username"
-				aria-describedby="basic-addon1" th:field="*{datadiinizio}">
+				aria-describedby="basic-addon1" th:field="*{datadiinizio}" value="${datadiinizio}">
 		</div>
 	</div>
 	<div class="modal-footer">

@@ -15,6 +15,5 @@ import it.uniroma3.progetto2020.model.Utente;
 @Repository
 public interface ProjectRepository extends CrudRepository<Progetto, Long>{
 	
-	@Query("update Progetto p set p.nome = :nome WHERE p.id = :id")
-    void updateProgetto(@Param("id") Long id, @Param("nome") String nome);
+	public List<Progetto> findByProprietarioId(Long id);
 }

@@ -45,7 +45,7 @@ public class ProgettoController {
 	public String progetto(Model model) {
 		Utente u = this.session.getLoggedUser();
 		model.addAttribute("progetto", new Progetto());
-		model.addAttribute("progetti", u.getProgettiPosseduti());
+		model.addAttribute("progetti", this.progettoService.getByProprietario(u.getId()));
 		return "progetti/progetto";
 	}
 
@@ -66,13 +66,14 @@ public class ProgettoController {
 	}
 
 	@RequestMapping(value = "/delete-prog/{id}", method = RequestMethod.GET)
-	public String deleteProgetto(@PathVariable("id") long id, Model model) {
+	public String deleteProgetto(@PathVariable("id") Long id, Model model) {
 		this.progettoService.deleteProgetto(id);
 		return "redirect:/progetti";
 	}
 
 	@RequestMapping(value = "/progetti-mod-send/{id}", method = RequestMethod.POST)
-	public String editProgetto(@ModelAttribute("progettomod") Progetto progetto, @PathVariable("id") long id, Model model) {
+	public String editProgetto(@ModelAttribute("progettomod") Progetto progetto, @PathVariable("id") Long id, Model model) {
+		progetto.setProprietario(this.session.getLoggedUser());
 		this.progettoService.saveProgetto(progetto);
 		return "redirect:/progetti";
 	}

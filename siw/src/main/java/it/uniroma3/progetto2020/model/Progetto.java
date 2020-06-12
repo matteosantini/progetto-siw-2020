@@ -2,6 +2,7 @@ package it.uniroma3.progetto2020.model;
 
 
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -53,7 +54,7 @@ public class Progetto {
 
 	public Progetto() {
 		super();
-		// TODO Auto-generated constructor stub
+		this.taskProgetto=new ArrayList<Task>();
 	}
 	public Long getId() {
 		return this.id;

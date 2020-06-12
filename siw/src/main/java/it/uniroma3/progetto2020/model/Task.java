@@ -99,11 +99,11 @@ public class Task {
 	}
 	
 	public void setProgetto(Progetto p){
-		this.progetto = p;
+		this.progettotask = p;
 	}
 	
 	public Progetto getProgetto() {
-		return this.progetto;
+		return this.progettotask;
 	}
 	
 	@Override

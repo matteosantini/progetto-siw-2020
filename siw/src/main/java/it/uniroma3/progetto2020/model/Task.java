@@ -2,12 +2,17 @@ package it.uniroma3.progetto2020.model;
 
 import java.sql.Date;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
@@ -33,12 +38,16 @@ public class Task {
 	@OneToOne
 	private Utente prorietario;
 	
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY)
 	private Progetto progettotask;
+	
+	@ManyToMany(cascade=CascadeType.PERSIST)
+	private List<Tag> tags;
 	
 	public Task() {
 		super();
 		this.creazione=LocalDateTime.now();
+		this.tags=new ArrayList<Tag>();
 	}
 
 	public Task(String nome, String descrizione, Date creazione, Utente prorietario,String colore) {

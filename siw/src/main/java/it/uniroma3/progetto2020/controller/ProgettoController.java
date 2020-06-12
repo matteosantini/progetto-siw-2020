@@ -77,7 +77,24 @@ public class ProgettoController {
 		this.progettoService.saveProgetto(progetto);
 		return "redirect:/progetti";
 	}
-
+	
+	@RequestMapping(value="/share-prog/{id}", method= RequestMethod.GET)
+	public String shareShowProgetto(Model model,@PathVariable("id") Long id) {
+		model.addAttribute("progettoshare",this.progettoService.findProgetto(id));
+		return "progetti/progetti-share-send";
+	}
+	
+	@RequestMapping(value="/progetti-share-send/{id}",method=RequestMethod.POST)
+	public String shareProgetto(@ModelAttribute("progettoshare") Progetto progetto,@ModelAttribute("idUtente") Long idUtente) {
+		//bisogna mettere sulla pagina la lista di tutti gli utenti a cui è possibile condividere il progetto
+		//e bisogna fare una if che controlla che non sia già autorizzato (però si potrebbe fare un controllo anche qui e
+		//shallona
+		Utente u=this.utenteService.getUtenteById(idUtente).get();
+		progetto.getUtentiautorizzati().add(u);
+		u.getProgettiAutorizzati().add(progetto);
+		return "redirect/progetti";
+	}
+	
 
 	@PostMapping("/addProgetto")
 	public String processForm(Progetto progetto) {

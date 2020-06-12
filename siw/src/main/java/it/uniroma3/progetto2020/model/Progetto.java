@@ -41,6 +41,9 @@ public class Progetto {
 	
 	@ManyToMany
 	private List<Utente> utentiAutorizzati;
+	
+	@ManyToMany(cascade=CascadeType.PERSIST)
+	private List<Tag> tags;
 
 	public Progetto(String nome, Date datadiinizio, List<Task> taskProgetto, Utente proprietario,
 			List<Utente> utentiautorizzati) {
@@ -55,6 +58,8 @@ public class Progetto {
 	public Progetto() {
 		super();
 		this.taskProgetto=new ArrayList<Task>();
+		this.utentiAutorizzati=new ArrayList<Utente>();
+		this.tags=new ArrayList<Tag>();
 	}
 	public Long getId() {
 		return this.id;

@@ -11,5 +11,4 @@ public interface UtenteService {
 	public void saveUtente(Utente utente);
 	public void deleteUtente(Long id);
 	public Iterable<Utente> getAllUtenti();
-
 }

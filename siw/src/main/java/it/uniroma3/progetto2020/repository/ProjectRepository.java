@@ -15,5 +15,6 @@ import it.uniroma3.progetto2020.model.Utente;
 @Repository
 public interface ProjectRepository extends CrudRepository<Progetto, Long>{
 	
+	
 	public List<Progetto> findByProprietarioId(Long id);
 }

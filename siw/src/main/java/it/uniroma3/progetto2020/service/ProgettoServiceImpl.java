@@ -69,7 +69,7 @@ public class ProgettoServiceImpl implements ProjectService {
 	
 	@Override
 	public List<Progetto> getByProprietario(Long idProprietario) {
-		return this.getByProprietario(idProprietario);
+		return this.progettoRepository.findByProprietarioId(idProprietario);
 	}
 
 }

@@ -23,6 +23,7 @@ public class TaskController {
 	@RequestMapping(value = "/view-prog/{id}", method = RequestMethod.GET)
 	public String task(@PathVariable("id") long id, Model model) {
 		Progetto p = progettoService.findProgetto(id);
+		model.addAttribute("nomeprogetto", p.getNome());
 		model.addAttribute("task", new Task());
 		model.addAttribute("id_progetto",id);
 		model.addAttribute("tasks", p.getTaskProgetto());

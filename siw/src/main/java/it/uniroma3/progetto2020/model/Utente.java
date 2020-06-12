@@ -25,7 +25,7 @@ public class Utente {
 	private LocalDateTime creazione;
 	private LocalDateTime modifica;
 
-	@OneToMany(mappedBy="proprietario",cascade=CascadeType.ALL,fetch = FetchType.EAGER)
+	@OneToMany(mappedBy="proprietario",cascade= CascadeType.ALL,fetch=FetchType.EAGER)
 	private List<Progetto> progettiPosseduti;
 
 	@ManyToMany(mappedBy="utentiAutorizzati",cascade=CascadeType.ALL) //nel caso di errori

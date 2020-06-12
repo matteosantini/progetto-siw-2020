@@ -35,7 +35,7 @@ public class AuthController {
 	public String signup(@Valid @ModelAttribute("utente") Utente utente,@Valid @ModelAttribute("credentials") Credentials credentials) {
 		credentials.setUtente(utente);
 		this.credentialService.saveCredential(credentials);
-		return "redirect:/utente/me";	
+		return "redirect:/login";	
 	}
 
 }

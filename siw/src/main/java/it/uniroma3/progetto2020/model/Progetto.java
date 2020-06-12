@@ -35,7 +35,7 @@ public class Progetto {
 	@OneToMany(mappedBy = "progettotask", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<Task> taskProgetto;
 	
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER)
 	private Utente proprietario;	
 	
 	@ManyToMany

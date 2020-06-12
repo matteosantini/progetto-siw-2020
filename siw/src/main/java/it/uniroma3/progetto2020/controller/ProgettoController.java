@@ -25,22 +25,22 @@ import org.springframework.web.bind.WebDataBinder;
 @Controller
 public class ProgettoController {
 
-//	@InitBinder
-//	public void initBinder(WebDataBinder binder) {
-//	SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-//	sdf.setLenient(true);
-//	binder.registerCustomEditor(Date.class, new CustomDateEditor(sdf, true));
-//	}
-	
+	//	@InitBinder
+	//	public void initBinder(WebDataBinder binder) {
+	//	SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+	//	sdf.setLenient(true);
+	//	binder.registerCustomEditor(Date.class, new CustomDateEditor(sdf, true));
+	//	}
+
 	@Autowired
 	private ProjectService progettoService;
-	
+
 	@Autowired
 	private SessionData session;
-	
+
 	@Autowired
 	private UtenteService utenteService;
-	
+
 	@RequestMapping(value = "/progetti", method = RequestMethod.GET)
 	public String progetto(Model model) {
 		Utente u = this.session.getLoggedUser();
@@ -48,39 +48,39 @@ public class ProgettoController {
 		model.addAttribute("progetti", u.getProgettiPosseduti());
 		return "progetti/progetto";
 	}
-	
+
 	@RequestMapping(value = "/progetti", method = RequestMethod.POST)
 	public String submitProgetto(@ModelAttribute("progetto") Progetto progetto, Model model) {
 		Utente u = this.session.getLoggedUser();
 		progetto.setProprietario(u);
-		this.session.getLoggedUser().getProgettiPosseduti().add(progetto);
-		this.utenteService.saveUtente(this.session.getLoggedUser());
+		u.getProgettiPosseduti().add(progetto);
+		this.utenteService.saveUtente(u);
 		return "redirect:/progetti";
 	}
-	
+
 	@RequestMapping(value = "/mod-prog/{id}", method = RequestMethod.GET)
-	public String editShowProgetto(@PathVariable("id") long id, Model model) {
+	public String editShowProgetto(@PathVariable("id") Long id, Model model) {
 		Progetto mod = this.progettoService.findProgetto(id);
 		model.addAttribute("progettomod", mod);
 		return "progetti/body-modal-mod-progetto";
 	}
-	
+
 	@RequestMapping(value = "/delete-prog/{id}", method = RequestMethod.GET)
 	public String deleteProgetto(@PathVariable("id") long id, Model model) {
 		this.progettoService.deleteProgetto(id);
 		return "redirect:/progetti";
 	}
-	
+
 	@RequestMapping(value = "/progetti-mod-send/{id}", method = RequestMethod.POST)
 	public String editProgetto(@ModelAttribute("progettomod") Progetto progetto, @PathVariable("id") long id, Model model) {
 		this.progettoService.saveProgetto(progetto);
 		return "redirect:/progetti";
 	}
-	
+
 
 	@PostMapping("/addProgetto")
 	public String processForm(Progetto progetto) {
 
-	    return "showMessage";
+		return "showMessage";
 	}
 }

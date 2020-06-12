@@ -97,7 +97,15 @@ public class Task {
 	public String getColore() {
 		return this.colore;
 	}
-
+	
+	public void setProgetto(Progetto p){
+		this.progetto = p;
+	}
+	
+	public Progetto getProgetto() {
+		return this.progetto;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

@@ -29,7 +29,7 @@ public class Utente {
 	@OneToMany(mappedBy="proprietario",cascade= CascadeType.ALL)
 	private List<Progetto> progettiPosseduti;
 
-	@ManyToMany(mappedBy="utentiAutorizzati",cascade=CascadeType.ALL) //nel caso di errori
+	@ManyToMany(mappedBy="utentiAutorizzati") //nel caso di errori
 	private List<Progetto> progettiAutorizzati;
 
 	public Utente() {

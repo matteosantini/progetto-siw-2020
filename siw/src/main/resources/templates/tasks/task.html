@@ -36,7 +36,7 @@
 					
 					<tr  th:each="taskdb: ${tasks}">
 						<td th:text="${taskdb.nome}" />
-						<td th:text="" pattern="dd-MM-yyyy" placeholder="dd-mm-yyyy"/>
+						<td th:text="${taskdb.descrizione}"/>
 						<td>
 						
 						<!-- MODIFICA  -->

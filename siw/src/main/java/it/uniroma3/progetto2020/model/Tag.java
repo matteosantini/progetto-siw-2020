@@ -24,15 +24,15 @@ public class Tag {
 	@ManyToMany(mappedBy="tags")
 	private List<Progetto> progetti;
 	
-	@ManyToMany(mappedBy="tags")
-	private List<Task> tasks;
+//	@ManyToMany(mappedBy="tags")
+//	private List<Task> tasks;
 	
 	@OneToMany(mappedBy="tags")
 	private List<Commento> commenti;
 	
 	public Tag() {
 		this.progetti=new ArrayList<Progetto>();
-		this.tasks=new ArrayList<Task>();
+//		this.tasks=new ArrayList<Task>();
 		this.commenti=new ArrayList<Commento>();
 	}
 
@@ -60,13 +60,13 @@ public class Tag {
 		this.progetti = progetti;
 	}
 
-	public List<Task> getTasks() {
-		return tasks;
-	}
-
-	public void setTasks(List<Task> tasks) {
-		this.tasks = tasks;
-	}
+//	public List<Task> getTasks() {
+//		return tasks;
+//	}
+//
+//	public void setTasks(List<Task> tasks) {
+//		this.tasks = tasks;
+//	}
 
 	@Override
 	public int hashCode() {

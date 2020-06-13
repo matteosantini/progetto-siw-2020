@@ -31,9 +31,9 @@ public class AuthConfiguration extends WebSecurityConfigurerAdapter{
                 // authorization paragraph: here we define WHO can access WHICH pages
                 .authorizeRequests()
                 // anyone (authenticated or not) can access the welcome page, the login page, and the registration page
-                .antMatchers(HttpMethod.GET, "/", "/index", "/login", "/utenti/register", "/progetto").permitAll()
+                .antMatchers(HttpMethod.GET, "/", "/index", "/login", "/utenti/register").permitAll()
                 // anyone (authenticated or not) can send POST requests to the login endpoint and the register endpoint
-                .antMatchers(HttpMethod.POST, "/login", "/utenti/register", "/progetto").permitAll()
+                .antMatchers(HttpMethod.POST, "/login", "/utenti/register").permitAll()
                 // only authenticated users with ADMIN authority can access the admin pag
                 .antMatchers(HttpMethod.GET,"/utente/me","/utenti/update").authenticated()
                 .antMatchers(HttpMethod.POST,"/utente/me","/utenti/update").authenticated()

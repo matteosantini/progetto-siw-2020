@@ -40,19 +40,13 @@
 						<td>
 						
 						<!-- MODIFICA  -->
-						<a  th:href="@{/mod-prog/{id}(id=${taskdb.id})}">	
+						<a  th:href="@{/mod-task/{id}(id=${taskdb.id})}">	
 						<img width="30" height="30" src="https://image.flaticon.com/icons/png/512/1160/1160515.png" style="cursor:pointer" 
 						data-placement="top" title="Modifica task" class="loaded">
 						</a>
 						
-						<!-- VISUALIZZA TASK -->
-						<a th:href="@{/view-prog/{id}(id=${taskdb.id})}">
-						<img width="30" height="30" src="https://image.flaticon.com/icons/svg/1269/1269549.svg" style="cursor:pointer" 
-						title="Visualizza task" class="loaded">
-						</a>
-						
 						<!-- ELIMINA TASK -->
-						<a th:href="@{/delete-prog/{id}(id=${taskdb.id})}">
+						<a th:href="@{/delete-task/{id}(id=${taskdb.id})}">
 						<img width="30" height="30" src="https://image.flaticon.com/icons/svg/1828/1828843.svg" style="cursor:pointer" 
 						title="Elimina task" class="loaded">
 						</a>

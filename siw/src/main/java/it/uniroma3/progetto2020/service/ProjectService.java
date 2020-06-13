@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.data.repository.CrudRepository;
 
 import it.uniroma3.progetto2020.model.Progetto;
+import it.uniroma3.progetto2020.model.Utente;
 
 public interface ProjectService{
 	public void saveProgetto(Progetto progetto);
@@ -17,4 +18,5 @@ public interface ProjectService{
 	public void condiviProgetto(Long id);
 	public Iterable<Progetto> getAllProgetto();
 	public List<Progetto> getByProprietario(Long idProprietario);
+	//public List<Utente> getUtentiProgettoNonAutorizzati();
 }

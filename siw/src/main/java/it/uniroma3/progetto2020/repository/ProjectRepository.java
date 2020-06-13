@@ -3,6 +3,8 @@ package it.uniroma3.progetto2020.repository;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.NamedQuery;
+
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -17,4 +19,7 @@ public interface ProjectRepository extends CrudRepository<Progetto, Long>{
 	
 	
 	public List<Progetto> findByProprietarioId(Long id);
+
+////	@Query("SELECT u FROM utente u LEFT JOIN progetto_utenti_autorizzati pu WHERE u.id =: pu.utenti_autorizzati_id AND NOT pu.progetti_autorizzati_id = ?1 ") //
+//	public List<Utente> getUtentiNonAutorizzati(Long id);
 }

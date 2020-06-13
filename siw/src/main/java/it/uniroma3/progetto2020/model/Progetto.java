@@ -100,7 +100,7 @@ public class Progetto {
 		this.taskProgetto = taskProgetto;
 	}
 
-	public List<Utente> getUtentiautorizzati() {
+	public List<Utente> getUtentiAutorizzati() {
 		return utentiAutorizzati;
 	}
 

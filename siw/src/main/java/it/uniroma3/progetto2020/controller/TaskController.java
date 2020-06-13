@@ -65,6 +65,7 @@ public class TaskController {
 	public String saveTaskEdit(Model model, @ModelAttribute("taskmod") Task task, @RequestParam("id_progetto") Long id){
 		Progetto p = progettoRepository.findById(id).get();
 		task.setProgetto(p);
+		task.setProrietario(session.getLoggedUser());
 		taskRepository.save(task);
 		return "redirect:/view-prog/" + task.getProgetto().getId();
 	}

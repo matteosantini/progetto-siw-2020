@@ -1,0 +1,57 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en" th:replace="fragments/header :: header">
+</head>
+<body>
+	<div class="card">
+
+		<div class="card-header">
+			<div class="row">
+				<div class="col-1">
+					<img width="70" height="70"
+						src="https://image.flaticon.com/icons/svg/3014/3014367.svg"
+						class="loaded">
+				</div>
+				<div class="col-9">
+					<b><h1 class="display-4">Lista Utenti</h1></b>
+				</div>
+				<div class="col-2">
+					
+				</div>
+			</div>
+		</div>
+		<div class="card-body">
+			<input type="hidden" th:value="${progettoshare_id}"/>
+			<table class="table table-hover" style="margin-top: 3%">
+				<thead style="background-color: #00b018; color: white">
+					<tr>
+						<th scope="col">Nome</th>
+						<th scope="col">Cognome</th>
+						<th scope="col">Azioni</th>
+					</tr>
+				</thead>
+				<tbody th:with="count=0">
+					
+					<tr  th:each="utentedb: ${utenti}">
+						<td th:text="${utentedb.nome}" />
+						<td th:text="${utentedb.cognome}"/>
+						<td>
+						
+						<!-- AGGIUNGI  -->
+						<a  th:href="@{'/add-user-project/' + ${utentedb.id}}">	
+						<img width="30" height="30" src="https://image.flaticon.com/icons/svg/1946/1946372.svg" style="cursor:pointer" 
+						data-placement="top" title="Aggiungi Utente" class="loaded">
+						</a>
+						
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+</body>
+
+
+<div lang="en" th:replace="fragments/footer :: footer"></div>
+
+</html>

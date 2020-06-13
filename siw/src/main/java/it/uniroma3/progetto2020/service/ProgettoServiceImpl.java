@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import it.uniroma3.progetto2020.model.Progetto;
+import it.uniroma3.progetto2020.model.Utente;
 import it.uniroma3.progetto2020.repository.ProjectRepository;
 import it.uniroma3.progetto2020.repository.UtenteRepository;
 
@@ -38,7 +39,7 @@ public class ProgettoServiceImpl implements ProjectService {
 	@Transactional
 	public void deleteProgetto(Long id) {
 		Progetto p = this.progettoRepository.findById(id).get();
-		this.progettoRepository.delete(p);;
+		this.progettoRepository.delete(p);
 		return;
 	}
 
@@ -71,5 +72,10 @@ public class ProgettoServiceImpl implements ProjectService {
 	public List<Progetto> getByProprietario(Long idProprietario) {
 		return this.progettoRepository.findByProprietarioId(idProprietario);
 	}
+
+//	@Override
+//	public List<Utente> getUtentiProgettoNonAutorizzati() {
+//		return this.progettoRepository.getUtentiNonAutorizzati();
+//	}
 
 }

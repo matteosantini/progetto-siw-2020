@@ -28,12 +28,13 @@ public class AuthController {
 		model.addAttribute("userForm", new Utente());
         model.addAttribute("credentialsForm", new Credentials());
 
-        return "registerUser";
+        return "utenti/registerUser";
 	}
 	
 	@RequestMapping(value="/utenti/register",method=RequestMethod.POST)
 	public String signup(@Valid @ModelAttribute("utente") Utente utente,@Valid @ModelAttribute("credentials") Credentials credentials) {
 		credentials.setUtente(utente);
+		utente.setCredentials(credentials);
 		this.credentialService.saveCredential(credentials);
 		return "redirect:/login";	
 	}

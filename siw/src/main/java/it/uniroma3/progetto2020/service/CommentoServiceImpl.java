@@ -20,7 +20,7 @@ public class CommentoServiceImpl implements CommentoService{
 
 	@Override
 	public Utente getCommentoByUtente(Utente u) {
-		return this.commentoRepository.findByUtente(u);
+		return this.commentoRepository.findByAutoreId(u.getId());
 	}
 
 	@Override

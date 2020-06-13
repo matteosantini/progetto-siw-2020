@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Utente {
@@ -34,6 +35,9 @@ public class Utente {
 	
 	@OneToMany(mappedBy="autore",cascade=CascadeType.ALL)
 	private List<Commento> commenti;
+	
+	@OneToOne(cascade=CascadeType.ALL)
+	private Credentials credentials;
 
 	public Utente() {
 		super();
@@ -109,6 +113,15 @@ public class Utente {
 
 	public void setModifica(LocalDateTime modifica) {
 		this.modifica = modifica;
+	}
+	
+
+	public Credentials getCredentials() {
+		return credentials;
+	}
+
+	public void setCredentials(Credentials credentials) {
+		this.credentials = credentials;
 	}
 
 	@Override

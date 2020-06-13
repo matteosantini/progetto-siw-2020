@@ -41,13 +41,13 @@ public class Task {
 	@ManyToOne(fetch=FetchType.LAZY)
 	private Progetto progettotask;
 	
-//	@ManyToMany(mappedBy="tasks", cascade=CascadeType.PERSIST)
-//	private List<Tag> tags;
+	@ManyToMany(mappedBy="tasks", cascade=CascadeType.PERSIST)
+	private List<Tag> tags;
 	
 	public Task() {
 		super();
 		this.creazione=LocalDateTime.now();
-//		this.tags=new ArrayList<Tag>();
+		this.tags=new ArrayList<Tag>();
 	}
 
 	public Task(String nome, String descrizione, Date creazione, Utente prorietario,String colore) {

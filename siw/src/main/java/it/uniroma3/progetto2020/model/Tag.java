@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -21,19 +22,15 @@ public class Tag {
 	@Column(unique=true,nullable=false)
 	private String nome;
 	
-	@ManyToMany(mappedBy="tags")
+	@ManyToMany(fetch=FetchType.LAZY)
 	private List<Progetto> progetti;
 	
-//	@ManyToMany(mappedBy="tags")
-//	private List<Task> tasks;
-	
-	@OneToMany(mappedBy="tags")
-	private List<Commento> commenti;
+	@ManyToMany(fetch=FetchType.LAZY)
+	private List<Task> tasks;
 	
 	public Tag() {
 		this.progetti=new ArrayList<Progetto>();
-//		this.tasks=new ArrayList<Task>();
-		this.commenti=new ArrayList<Commento>();
+		this.tasks=new ArrayList<Task>();
 	}
 
 	public Long getId() {
@@ -60,13 +57,13 @@ public class Tag {
 		this.progetti = progetti;
 	}
 
-//	public List<Task> getTasks() {
-//		return tasks;
-//	}
-//
-//	public void setTasks(List<Task> tasks) {
-//		this.tasks = tasks;
-//	}
+	public List<Task> getTasks() {
+		return tasks;
+	}
+
+	public void setTasks(List<Task> tasks) {
+		this.tasks = tasks;
+	}
 
 	@Override
 	public int hashCode() {

@@ -26,25 +26,25 @@ public class UtenteController {
 	
 	@RequestMapping("/utente/me")
 	public String myProfile(Model model) {
-		model.addAttribute("utente",this.session.getLoggedUser());
-		return "utente";
+		model.addAttribute("utente",this.utenteService.getUtenteById(this.session.getLoggedUser().getId()).get());
+		return "utenti/utente";
 	}
 	@RequestMapping("/utenti")
 	public String allUtenti(Model model) {
 		model.addAttribute("utenti",this.utenteService.getAllUtenti());
-		return "utenti";
+		return "utenti/utenti";
 	}
 	
 	@RequestMapping("/utente/{id}")
 	public String getUtenteByUsername(Model model,@PathVariable Long id) {
 		model.addAttribute("utente",this.utenteService.getUtenteById(id).get());
-		return "utente";
+		return "utenti/utente";
 	}
 	
 	@RequestMapping(value="/utenti/update/{id}",method=RequestMethod.GET)
 	public String updateUtenteById(Model model,@PathVariable("id") Long id) {
 		model.addAttribute("utente", this.utenteService.getUtenteById(id).get());
-		return "updateUtente";
+		return "utenti/updateUtente";
 	}
 	
 	@RequestMapping(value="/utenti/update",method=RequestMethod.POST)
@@ -58,7 +58,7 @@ public class UtenteController {
 	@RequestMapping(value="/utenti/delete/{id}",method=RequestMethod.GET)
 	public String delete(Model model,@PathVariable("id") Long id) {
 		model.addAttribute("utente",this.utenteService.getUtenteById(id).get());
-		return "deleteUtente";
+		return "utenti/deleteUtente";
 	}
 	
 	@RequestMapping(value="/utenti/delete",method=RequestMethod.POST)

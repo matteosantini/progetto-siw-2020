@@ -42,7 +42,7 @@ public class Progetto {
 	@ManyToMany
 	private List<Utente> utentiAutorizzati;
 	
-	@ManyToMany(cascade=CascadeType.PERSIST)
+	@ManyToMany(mappedBy="progetti",cascade=CascadeType.PERSIST)
 	private List<Tag> tags;
 
 	public Progetto(String nome, Date datadiinizio, List<Task> taskProgetto, Utente proprietario,

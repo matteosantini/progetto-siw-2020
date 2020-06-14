@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import it.uniroma3.progetto2020.model.Progetto;
+import it.uniroma3.progetto2020.model.Tag;
 import it.uniroma3.progetto2020.model.Utente;
 import it.uniroma3.progetto2020.repository.ProjectRepository;
 import it.uniroma3.progetto2020.service.ProjectService;
+import it.uniroma3.progetto2020.service.TagService;
 import it.uniroma3.progetto2020.service.UtenteService;
 import it.uniroma3.progetto2020.session.SessionData;
 
@@ -41,6 +43,9 @@ public class ProgettoController {
 
 	@Autowired
 	private UtenteService utenteService;
+	
+	@Autowired
+	private TagService tagService;
 	
 	private Progetto progettoCorrente;
 
@@ -111,6 +116,23 @@ public class ProgettoController {
 		this.progettoCorrente.getUtentiAutorizzati().add(u);
 		this.utenteService.saveUtente(u);
 		this.progettoService.saveProgetto(this.progettoCorrente);
-		return "redirect:/share-prog/" + this.progettoCorrente.getId();
+		return "redirect:/progetti" + this.progettoCorrente.getId();
+	}
+	
+	@RequestMapping(value="/tag-prog/{id}",method=RequestMethod.GET)
+	public String viewTagProgetto(@PathVariable("id") Long id_progetto, Model model) {
+		model.addAttribute("tags",this.tagService.getAllTags());
+		this.progettoCorrente=this.progettoService.findProgetto(id_progetto);
+		return "tag/tag-prog";
+	}
+	
+	@RequestMapping(value="/add-tag-prog/{id}",method=RequestMethod.GET)
+	public String addTagToProgetto(@PathVariable("id") Long id_tag, Model model) {
+		Tag t = this.tagService.getTagById(id_tag);
+		t.getProgetti().add(this.progettoCorrente);
+		this.progettoCorrente.getTags().add(t);
+		this.progettoService.saveProgetto(this.progettoCorrente);
+		this.tagService.saveTag(t);
+		return "redirect:/progetti";
 	}
 }

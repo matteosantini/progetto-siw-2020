@@ -28,6 +28,10 @@ public class Tag {
 	@ManyToMany(fetch=FetchType.LAZY)
 	private List<Task> tasks;
 	
+	private String descrizione;
+	
+	private String colore;
+	
 	public Tag() {
 		this.progetti=new ArrayList<Progetto>();
 		this.tasks=new ArrayList<Task>();
@@ -63,6 +67,23 @@ public class Tag {
 
 	public void setTasks(List<Task> tasks) {
 		this.tasks = tasks;
+	}
+	
+	
+	public String getDescrizione() {
+		return descrizione;
+	}
+
+	public void setDescrizione(String descrizione) {
+		this.descrizione = descrizione;
+	}
+
+	public String getColore() {
+		return colore;
+	}
+
+	public void setColore(String colore) {
+		this.colore = colore;
 	}
 
 	@Override

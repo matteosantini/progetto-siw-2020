@@ -127,6 +127,14 @@ public class Utente {
 		this.credentials = credentials;
 	}
 
+	public List<Commento> getCommenti() {
+		return commenti;
+	}
+
+	public void setCommenti(List<Commento> commenti) {
+		this.commenti = commenti;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

@@ -59,5 +59,7 @@ public class TagController {
 		this.tagService.deleteTag(tag);
 		return "redirect:/tags";
 	}
+	
+	
 
 }

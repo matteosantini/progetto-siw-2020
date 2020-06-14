@@ -14,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -44,10 +45,14 @@ public class Task {
 	@ManyToMany(mappedBy="tasks", cascade=CascadeType.PERSIST)
 	private List<Tag> tags;
 	
+	@OneToMany(mappedBy="task",cascade=CascadeType.REMOVE)
+	private List<Commento> commenti;
+	
 	public Task() {
 		super();
 		this.creazione=LocalDateTime.now();
 		this.tags=new ArrayList<Tag>();
+		this.commenti=new ArrayList<Commento>();
 	}
 
 	public Task(String nome, String descrizione, Date creazione, Utente prorietario,String colore) {
@@ -113,8 +118,24 @@ public class Task {
 	
 	public Progetto getProgetto() {
 		return this.progettotask;
-	}
+	} 
 	
+	public List<Tag> getTags() {
+		return tags;
+	}
+
+	public void setTags(List<Tag> tags) {
+		this.tags = tags;
+	}
+
+	public List<Commento> getCommenti() {
+		return commenti;
+	}
+
+	public void setCommenti(List<Commento> commenti) {
+		this.commenti = commenti;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

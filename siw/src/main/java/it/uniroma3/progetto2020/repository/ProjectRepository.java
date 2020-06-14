@@ -20,6 +20,6 @@ public interface ProjectRepository extends CrudRepository<Progetto, Long>{
 	
 	public List<Progetto> findByProprietarioId(Long id);
 
-////	@Query("SELECT u FROM utente u LEFT JOIN progetto_utenti_autorizzati pu WHERE u.id =: pu.utenti_autorizzati_id AND NOT pu.progetti_autorizzati_id = ?1 ") //
-//	public List<Utente> getUtentiNonAutorizzati(Long id);
+	//@Query("SELECT u FROM utente u JOIN utentiprogetti pu ON u.id = pu.utente_id WHERE NOT pu.progetti_autorizzati_id = ?1 ") //
+	//public List<Utente> getUtentiNonAutorizzati(Long id);
 }

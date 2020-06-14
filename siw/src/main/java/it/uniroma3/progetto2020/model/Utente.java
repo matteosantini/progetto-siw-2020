@@ -12,13 +12,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 
-@Entity
+@Entity(name="utente")
 public class Utente {
 
 	@Id
@@ -33,7 +34,8 @@ public class Utente {
 	@OneToMany(mappedBy="proprietario",cascade= CascadeType.ALL)
 	private List<Progetto> progettiPosseduti;
 
-	@ManyToMany(mappedBy="utentiAutorizzati") //nel caso di errori
+	@ManyToMany (mappedBy="utentiAutorizzati") //nel caso di errori
+	//@JoinTable(name="utentiprogetti")
 	private List<Progetto> progettiAutorizzati;
 	
 	@OneToMany(mappedBy="autore",cascade=CascadeType.ALL)

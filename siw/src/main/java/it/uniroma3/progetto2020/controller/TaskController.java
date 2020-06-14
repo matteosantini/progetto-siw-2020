@@ -31,9 +31,6 @@ public class TaskController {
 	private TaskService taskService;
 	
 	@Autowired
-	private TaskRepository taskRepository;
-	
-	@Autowired
 	private ProjectRepository progettoRepository;
 	
 	@Autowired
@@ -68,7 +65,7 @@ public class TaskController {
 	
 	@RequestMapping(value = "/mod-task/{id}", method = RequestMethod.GET)
 	public String viewTaskForEdit(Model model,@PathVariable("id") Long id_task) {
-		Task t = taskRepository.findById(id_task).get();
+		Task t = this.taskService.getTaskById(id_task);
 		model.addAttribute("taskmod",t);
 		model.addAttribute("progetto_id", t.getProgetto().getId());
 		return "tasks/mod-task";
@@ -79,21 +76,20 @@ public class TaskController {
 		Progetto p = progettoRepository.findById(id).get();
 		task.setProgetto(p);
 		task.setProrietario(session.getLoggedUser());
-		taskRepository.save(task);
 		return "redirect:/view-prog/" + task.getProgetto().getId();
 	}
 	
 	@RequestMapping(value="/delete-task/{id}", method = RequestMethod.GET)
 	public String deleteTask(Model model, @PathVariable("id") Long id){
-		Task t = taskRepository.findById(id).get();
+		Task t = this.taskService.getTaskById(id);
 		Long id_progetto = t.getProgetto().getId();
-		taskRepository.delete(t);
+		this.taskService.deleteTask(t);
 		return "redirect:/view-prog/" + id_progetto;
 	}
 	
 	@RequestMapping(value="/tag-task/{id}", method = RequestMethod.GET)
 	public String showTagTask(Model model, @PathVariable("id") Long id){
-		this.taskCorrente = this.taskRepository.findById(id).get();
+		this.taskCorrente = this.taskService.getTaskById(id);
 		Progetto p=this.progettoService.findProgetto(this.taskCorrente.getProgetto().getId());
 		model.addAttribute("tags",p.getTags());
 		return "tag/tag-task";
@@ -111,7 +107,7 @@ public class TaskController {
 	
 	@RequestMapping(value="/add-commento-task/{id}",method=RequestMethod.GET)
 	public String showAddCommentoToTask(@PathVariable("id") Long id_task, Model model) {
-		this.taskCorrente=this.taskRepository.findById(id_task).get();
+		this.taskCorrente=this.taskService.getTaskById(id_task);
 		model.addAttribute("commento", new Commento());
 		return "commento/commento";
 	}
@@ -124,7 +120,7 @@ public class TaskController {
 		u.getCommenti().add(c);
 		this.taskCorrente.getCommenti().add(c);
 		this.utenteService.saveUtente(u);
-		this.taskRepository.save(this.taskCorrente);
+		this.taskService.saveTask(this.taskCorrente);
 		return "redirect:/progetti";
 	}
 }

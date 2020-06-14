@@ -8,5 +8,7 @@ import it.uniroma3.progetto2020.model.Task;
 public interface TaskService {
 
 	void saveTask(Task task);
-
+	void deleteTask(Task task);
+	public Task getTaskById(Long id);
+	
 }

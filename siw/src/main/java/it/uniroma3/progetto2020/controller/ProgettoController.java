@@ -41,6 +41,8 @@ public class ProgettoController {
 
 	@Autowired
 	private UtenteService utenteService;
+	
+	private Progetto progettoCorrente;
 
 	@RequestMapping(value = "/progetti", method = RequestMethod.GET)
 	public String progetto(Model model) {
@@ -98,17 +100,17 @@ public class ProgettoController {
 	@RequestMapping(value="/share-prog/{id}", method= RequestMethod.GET)
 	public String shareShowProgetto(Model model,@PathVariable("id") Long id) {
 		model.addAttribute("utenti",this.utenteService.getAllUtenti());
-		model.addAttribute("progettoshare_id", id);
+		this.progettoCorrente=this.progettoService.findProgetto(id);
 		return "progetti/progetto-share-send";
 	}
 	
-	@RequestMapping(value="/add-user-project/{id}-{id_progetto}",method=RequestMethod.GET)
-	public String addUtenteToProgetto(@PathVariable("id") Long id_utente, @ModelAttribute("progettoshare_id") Long id_progetto) {
-		System.out.println("========================================================");
-		System.out.println(id_progetto.toString());
+	@RequestMapping(value="/add-user-project/{id}",method=RequestMethod.GET)
+	public String addUtenteToProgetto(@PathVariable("id") Long id_utente) {
 		Utente u = this.utenteService.getUtenteById(id_utente).get();
-		u.getProgettiAutorizzati().add(this.progettoService.findProgetto(id_progetto));
-		//this.utenteService.saveUtente(u);
-		return "redirect:/share-prog/" + id_progetto;
+		u.getProgettiAutorizzati().add(this.progettoCorrente);
+		this.progettoCorrente.getUtentiAutorizzati().add(u);
+		this.utenteService.saveUtente(u);
+		this.progettoService.saveProgetto(this.progettoCorrente);
+		return "redirect:/share-prog/" + this.progettoCorrente.getId();
 	}
 }

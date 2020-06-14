@@ -1,0 +1,33 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en" th:replace="fragments/header :: header">
+<div class="card">
+
+<div class="card-header">
+			<div class="row">
+				<div class="col-1">
+					<img width="80" height="80"
+						src="https://image.flaticon.com/icons/svg/2097/2097268.svg"
+						class="loaded">
+				</div>
+				<div class="col-11">
+					<b><h1 class="display-4">Aggiungi Commento</h1></b>
+				</div>
+			</div>
+</div>
+<form action="#" th:action="@{/add-commento/{id}(id=${commento.id})}" th:object="${commento}" method="post">
+<input type="hidden" th:field="*{id}" value="${id}" readonly/>
+	<div class="modal-body">
+		<div class="input-group mb-3">
+			<textarea class="form-control" rows="10" cols="10" th:field="*{testo}" placeholder="Commento"></textarea>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<a href="/progetti">
+		<button type="button" class="btn btn-secondary" data-dismiss="modal">Indietro</button>
+		</a>
+		<button type="submit" class="btn btn-primary">Salva</button>
+	</div>
+</form>
+</div>
+<div lang="en" th:replace="fragments/footer :: footer"></div>
+</html>

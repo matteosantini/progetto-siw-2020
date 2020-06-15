@@ -19,7 +19,7 @@ import javax.persistence.OneToOne;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-@Entity
+@Entity(name="task")
 public class Task {
 	
 	@Id

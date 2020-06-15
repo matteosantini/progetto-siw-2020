@@ -1,10 +1,13 @@
 package it.uniroma3.progetto2020.service;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import it.uniroma3.progetto2020.model.Tag;
 import it.uniroma3.progetto2020.model.Task;
 import it.uniroma3.progetto2020.repository.TaskRepository;
 
@@ -30,6 +33,11 @@ public class TaskServiceImpl implements TaskService{
 	@Transactional
 	public Task getTaskById(Long id) {
 		return this.taskRepository.findById(id).get();
+	}
+
+	@Override
+	public List<Tag> getTagNonInseriti() {
+		return this.taskRepository.getTagNonInseriti();
 	}
 	
 }

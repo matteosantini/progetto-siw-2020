@@ -1,0 +1,131 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en" th:replace="fragments/header :: header">
+</head>
+<body>
+	<div class="card">
+
+		<div class="card-header">
+			<div class="row">
+				<div class="col-1">
+					<img width="60" height="60"
+						src="https://image.flaticon.com/icons/svg/916/916926.svg"
+						class="loaded">
+				</div>
+				<div class="col-9">
+					<b><h1 class="display-4">Lista tags</h1></b>
+				</div>
+				<div class="col-2">
+					
+				</div>
+			</div>
+		</div>
+		<div class="card-body">
+		
+		
+		<button onclick="showModalAddtag();" class="btn btn-danger" style="float:right">+ TAG</button>
+		
+			<table class="table table-hover " style="margin-top:3%">
+				<thead style="background-color: #e0a800; color: white;">
+					<tr> <!-- COLORE ROW -->
+						<th scope="col">Nome</th>
+						<th scope="col">Descrizione</th>
+						<th scope="col">Azioni</th>
+					</tr>
+				</thead>
+				<tbody th:with="count=0">
+					
+					<tr  th:each="tagdb: ${tags}">
+						<td th:text="${tagdb.nome}" />
+						<td th:text="${tagdb.descrizione}"/>
+						<td>
+						
+						<!-- MODIFICA  -->
+						<a  th:href="@{/mod-tag/{id}(id=${tagdb.id})}">	
+						<img width="30" height="30" src="https://image.flaticon.com/icons/png/512/1160/1160515.png" style="cursor:pointer" 
+						data-placement="top" title="Modifica tag" class="loaded">
+						</a>
+						
+						<!-- ELIMINA tag -->
+						<a th:href="@{/delete-tag/{id}(id=${tagdb.id})}">
+						<img width="30" height="30" src="https://image.flaticon.com/icons/svg/1828/1828843.svg" style="cursor:pointer" 
+						title="Elimina tag" class="loaded">
+						</a>
+						
+<!-- 						Test tag
+						
+						<img onclick="test();" width="30" height="30" src="https://image.flaticon.com/icons/svg/1828/1828843.svg" style="cursor:pointer" 
+						title="Elimina tag" class="loaded"> -->
+						
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+</body>
+
+<!-- MODALE ADD tag -->
+<div class="modal" tabindex="-1" role="dialog" id="add-tagmodal">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Aggiungi Tag</h5>
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<form action="#" th:action="@{/tag-store}" th:object="${tag}" method="post">
+			<div class="modal-body">
+				<div class="input-group mb-3">
+					<div class="input-group-prepend">
+						<span class="input-group-text" id="basic-addon1">Nome:</span>
+					</div>
+					<input type="text" class="form-control" placeholder="Nome tag"
+						aria-label="Username" aria-describedby="basic-addon1" th:field="*{nome}">
+				</div>
+				
+				<div class="input-group mb-3">
+					<div class="input-group-prepend">
+						<span class="input-group-text" id="basic-addon1">Descrizione:</span>
+					</div>
+					<input type="text" class="form-control" placeholder="Nome tag"
+						aria-label="Username" aria-describedby="basic-addon1" th:field="*{descrizione}">
+				</div>
+				
+				<div class="input-group mb-3">
+					<div class="input-group-prepend">
+						<span class="input-group-text" id="basic-addon1">Colore:</span>
+					</div>
+					<input type="color" class="form-control" placeholder="Nome tag"
+						aria-label="Username" aria-describedby="basic-addon1" th:field="*{colore}">
+				</div>
+				
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<button type="submit"  class="btn btn-primary">Salva</button>
+			</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+
+<div lang="en" th:replace="fragments/footer :: footer"></div>
+<script type="text/javascript">
+	function showModalAddtag() {
+		$('#add-tagmodal').modal('show');
+	}
+/*  	function test(){
+		var id = 1;
+		$.get("test",{id:id}, function(data){
+			console.log(data);
+		});
+	}  */
+	
+</script>
+
+
+</html>

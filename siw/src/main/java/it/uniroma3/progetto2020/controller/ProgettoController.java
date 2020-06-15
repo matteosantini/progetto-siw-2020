@@ -123,7 +123,7 @@ public class ProgettoController {
 	
 	@RequestMapping(value="/tag-prog/{id}",method=RequestMethod.GET)
 	public String viewTagProgetto(@PathVariable("id") Long id_progetto, Model model) {
-		model.addAttribute("tags",this.tagService.getAllTags());
+		model.addAttribute("tags",this.progettoService.getTagNonInseriti());
 		this.progettoCorrente=this.progettoService.findProgetto(id_progetto);
 		return "tag/tag-prog";
 	}
@@ -135,6 +135,6 @@ public class ProgettoController {
 		this.progettoCorrente.getTags().add(t);
 		this.progettoService.saveProgetto(this.progettoCorrente);
 		this.tagService.saveTag(t);
-		return "redirect:/progetti";
+		return "redirect:/tag-prog/"+ this.progettoCorrente.getId();
 	}
 }

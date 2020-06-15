@@ -21,45 +21,32 @@ public class TagController {
 	@RequestMapping("/tags")
 	public String getAllTags(Model model) {
 		model.addAttribute("tags", this.tagService.getAllTags());
-		return "tags";
+		model.addAttribute("tag", new Tag());
+		return "tag/tag";
 	}
 	
-	@RequestMapping(value="/tags/add",method=RequestMethod.GET)
-	public String addTag(Model model) {
-		model.addAttribute("tag",new Tag());
-		return "addTag";
-	}
-	
-	@RequestMapping(value="/tags/add",method=RequestMethod.POST)
+	@RequestMapping(value="/tag-store",method=RequestMethod.POST)
 	public String processAddTag(@ModelAttribute("tag") Tag tag) {
 		this.tagService.saveTag(tag);
 		return "redirect:/tags";
 	}
 	
-	@RequestMapping(value="tags/update/{id}",method=RequestMethod.GET)
+	@RequestMapping(value="mod-tag/{id}",method=RequestMethod.GET)
 	public String updateTag(Model model,@PathVariable("id") Long id) {
 		model.addAttribute("updateTag",this.tagService.getTagById(id) );
-		return "updateTag";
+		return "tag/tag-edit";
 	}
 	
-	@RequestMapping(value="tags/update",method=RequestMethod.POST)
+	@RequestMapping(value="/tag-mod-send",method=RequestMethod.POST)
 	public String processUpdateTag(@ModelAttribute("updateTag") Tag tag) {
 		this.tagService.saveTag(tag);
 		return "redirect:/tags";
 	}
 	
-	@RequestMapping(value="tags/delete/{id}",method=RequestMethod.GET)
+	@RequestMapping(value="delete-tag/{id}",method=RequestMethod.GET)
 	public String delete(Model model,@PathVariable("id") Long id) {
-		model.addAttribute("deleteTag", this.tagService.getTagById(id));
-		return "deleteTag";
-	}
-	
-	@RequestMapping(value="tags/delete",method=RequestMethod.POST)
-	public String processDelete(@ModelAttribute("deleteTag") Tag tag) {
-		this.tagService.deleteTag(tag);
+		this.tagService.deleteTag(this.tagService.getTagById(id));
 		return "redirect:/tags";
 	}
-	
-	
 
 }

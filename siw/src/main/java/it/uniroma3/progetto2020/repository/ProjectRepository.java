@@ -11,6 +11,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import it.uniroma3.progetto2020.model.Progetto;
+import it.uniroma3.progetto2020.model.Tag;
 import it.uniroma3.progetto2020.model.Task;
 import it.uniroma3.progetto2020.model.Utente;
 
@@ -22,4 +23,10 @@ public interface ProjectRepository extends CrudRepository<Progetto, Long>{
 
 	@Query("SELECT u FROM utente u left join u.progettiAutorizzati pu where pu.id IS NULL")// WHERE NOT pu.id_progetto = ?1 ") 
 	public List<Utente> getUtentiNonAutorizzati();
+	
+	@Query("SELECT t FROM tag t left join t.progetti tp where tp.id IS NULL")
+	public List<Tag> getTagNonInseriti();
+	
+	@Query("SELECT t FROM tag t left join t.progetti tp where tp.id IS NOT NULL")
+	public List<Tag> getTagInseriti();
 }

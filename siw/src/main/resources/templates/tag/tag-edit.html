@@ -1,0 +1,56 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en" th:replace="fragments/header :: header">
+<div class="card">
+
+<div class="card-header">
+			<div class="row">
+				<div class="col-1">
+					<img width="80" height="80"
+						src="https://image.flaticon.com/icons/svg/2905/2905191.svg"
+						class="loaded">
+				</div>
+				<div class="col-11">
+					<b><h1 class="display-4">Modifica Progetto <a th:text="${updateTag.nome}"></a></h1></b>
+				</div>
+			</div>
+</div>
+<form action="#" th:action="@{/tag-mod-send}" th:object="${updateTag}" method="post">
+<input type="hidden" th:field="*{id}" value="${id}" readonly/>
+	<div class="modal-body">
+		<div class="input-group mb-3">
+			<div class="input-group-prepend">
+				<span class="input-group-text" id="basic-addon1">Nome:</span>
+			</div>
+			<input type="text" class="form-control" placeholder="Nome tag"
+				aria-label="Nome" aria-describedby="basic-addon1"
+				th:field="*{nome}" value="${nome}">
+		</div>
+
+		<div class="input-group mb-3">
+			<div class="input-group-prepend">
+				<span class="input-group-text" id="basic-addon1">Descrizione:</span>
+			</div>
+			<input type="text" id="data-progetto" class="form-control"
+				placeholder="Descrizione" aria-label="Username"
+				aria-describedby="basic-addon1" th:field="*{descrizione}" value="${descrizione}">
+		</div>
+		
+		<div class="input-group mb-3">
+			<div class="input-group-prepend">
+				<span class="input-group-text" id="basic-addon1">Colore:</span>
+			</div>
+			<input type="color" id="data-progetto" class="form-control"
+				aria-label="Username"
+				aria-describedby="basic-addon1" th:field="*{colore}" value="${colore}">
+		</div>
+	</div>
+	<div class="modal-footer">
+		<a href="/tags">
+		<button type="button" class="btn btn-secondary" data-dismiss="modal">Indietro</button>
+		</a>
+		<button type="submit" class="btn btn-primary">Salva</button>
+	</div>
+</form>
+</div>
+<div lang="en" th:replace="fragments/footer :: footer"></div>
+</html>

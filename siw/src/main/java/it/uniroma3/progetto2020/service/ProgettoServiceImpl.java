@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import it.uniroma3.progetto2020.model.Progetto;
+import it.uniroma3.progetto2020.model.Tag;
 import it.uniroma3.progetto2020.model.Utente;
 import it.uniroma3.progetto2020.repository.ProjectRepository;
 import it.uniroma3.progetto2020.repository.UtenteRepository;
@@ -77,5 +78,14 @@ public class ProgettoServiceImpl implements ProjectService {
 	public List<Utente> getUtentiProgettoNonAutorizzati() {
 		return this.progettoRepository.getUtentiNonAutorizzati();
 	}
+	
+	@Override
+	public List<Tag> getTagNonInseriti(){
+		return this.progettoRepository.getTagNonInseriti();
+	}
 
+	@Override
+	public List<Tag> getTagInseriti() {
+		return this.progettoRepository.getTagInseriti();
+	}
 }

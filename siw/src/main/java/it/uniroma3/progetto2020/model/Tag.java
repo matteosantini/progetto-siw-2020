@@ -9,10 +9,12 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
-@Entity
+@Entity(name="tag")
 public class Tag {
 	
 	@Id
@@ -23,9 +25,11 @@ public class Tag {
 	private String nome;
 	
 	@ManyToMany(fetch=FetchType.LAZY)
+	@JoinTable(name="progettotag", joinColumns = @JoinColumn(name = "id_tag"), inverseJoinColumns = @JoinColumn (name="id_progetto"))
 	private List<Progetto> progetti;
 	
 	@ManyToMany(fetch=FetchType.LAZY)
+	@JoinTable(name="tasktag", joinColumns = @JoinColumn(name = "id_tag"), inverseJoinColumns = @JoinColumn (name="id_task"))
 	private List<Task> tasks;
 	
 	private String descrizione;

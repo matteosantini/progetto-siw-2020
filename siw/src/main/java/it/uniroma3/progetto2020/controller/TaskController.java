@@ -91,7 +91,7 @@ public class TaskController {
 	public String showTagTask(Model model, @PathVariable("id") Long id){
 		this.taskCorrente = this.taskService.getTaskById(id);
 		Progetto p=this.progettoService.findProgetto(this.taskCorrente.getProgetto().getId());
-		model.addAttribute("tags",p.getTags());
+		model.addAttribute("tags", this.taskService.getTagNonInseriti());
 		return "tag/tag-task";
 	}
 	

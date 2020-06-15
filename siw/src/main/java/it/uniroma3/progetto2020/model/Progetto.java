@@ -14,6 +14,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -44,7 +45,7 @@ public class Progetto {
 	//@JoinColumn(name="id_utente")
 	private List<Utente> utentiAutorizzati;
 	
-	@ManyToMany(mappedBy="progetti",cascade=CascadeType.PERSIST)
+	@ManyToMany(mappedBy = "progetti",cascade=CascadeType.PERSIST) 
 	private List<Tag> tags;
 
 	public Progetto(String nome, Date datadiinizio, List<Task> taskProgetto, Utente proprietario,

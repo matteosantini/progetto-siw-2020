@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.data.repository.CrudRepository;
 
 import it.uniroma3.progetto2020.model.Progetto;
+import it.uniroma3.progetto2020.model.Tag;
 import it.uniroma3.progetto2020.model.Utente;
 
 public interface ProjectService{
@@ -19,4 +20,6 @@ public interface ProjectService{
 	public Iterable<Progetto> getAllProgetto();
 	public List<Progetto> getByProprietario(Long idProprietario);
 	public List<Utente> getUtentiProgettoNonAutorizzati();
+	public List<Tag> getTagNonInseriti();
+	public List<Tag> getTagInseriti();
 }

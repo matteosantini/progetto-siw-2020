@@ -43,6 +43,7 @@ public class AuthConfiguration extends WebSecurityConfigurerAdapter{
                 // login paragraph: here we define how to login
                 // use formlogin protocol to perform login
                 .and().formLogin()
+                .loginPage("/login")
                 // after login is successful, redirect to the logged user homepage
                 .defaultSuccessUrl("/utente/me")
 
@@ -51,11 +52,11 @@ public class AuthConfiguration extends WebSecurityConfigurerAdapter{
                 // - use the .loginPage() method in this configuration
                 // - write a controller method that returns our login view when a GET method is sent to /login
                 //   (but Spring would still handle the POST automatically)
-
+                
                 // logout paragraph: we are going to define here how to logout
                 .and().logout()
                 .logoutUrl("/logout")               // logout is performed when sending a GET to "/logout"
-                .logoutSuccessUrl("/");        // after logout is successful, redirect to /index page
+                .logoutSuccessUrl("/login");        // after logout is successful, redirect to /index page
     }
 	
 	@Override

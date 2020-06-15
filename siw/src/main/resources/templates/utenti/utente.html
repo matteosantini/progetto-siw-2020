@@ -1,36 +1,102 @@
-<!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="https://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head lang="en" th:replace="fragments/header :: header">
+</head>
 <body>
-	<h1>Il tuo profilo</h1>
-	<table>
-		<tr>
-			<td>Nome</td>
-			<td th:text="${utente.nome}">...</td>
-		</tr>
-		<tr>
-			<td>Cognome</td>
-			<td th:text="${utente.cognome}">...</td>
-		</tr>
-		<tr>
-			<td>Registered at:</td>
-			<td th:text="${utente.creazione}">...</td>
-		</tr>
-		<tr>
-			<td>Last Update at:</td>
-			<td th:text="${utente.modifica}">...</td>
-		</tr>
-		<tr>
-			<td><a th:href="@{'/utenti/update/' + ${utente.id}}">Modifica</a></td>
-		</tr>
-		<tr>
-			<td><a th:href="@{'/utenti/delete/' + ${utente.id}}">Elimina</a></td>
-		</tr>
-	</table>
-	<div>
-		<a href="/progetti">Progetti</a>
+	<div class="card">
+
+		<div class="card-header">
+			<div class="row">
+				<div class="col-2">
+					
+				</div>
+				<div class="col-1">
+					<img width="60" height="60"
+						src="https://image.flaticon.com/icons/svg/2637/2637293.svg"
+						class="loaded" style="margin-left:65%">
+				</div>
+				<div class="col-6">
+					<b><h1 class="display-4">Area Personale di <span th:text="${utente.nome}"></span> <span th:text="${utente.cognome}"></span></h1></b>
+				</div>
+			</div>
+		</div>
+		<div class="card-body">
+			<div class="row">
+				
+				<div class="col-2">
+				
+				</div>
+				
+				<div class="col-8">
+					<div class="card">
+						<div class="card-header">
+    						Pannello di controllo
+ 				 		</div>
+ 				 		
+						<div class="card-body">
+						
+						<div class="row">
+						<div class="col-1"></div>
+						
+						<!-- MODIFICA PROFILO -->
+						<div class="col-2">
+						<a th:href="@{'/utenti/update/' + ${utente.id}}">
+						<button class="btn btn-info"><img width="25" height="25"
+						src="https://image.flaticon.com/icons/png/512/2948/2948257.png"
+						class="loaded"> PROFILO</button>
+						</a> 
+						</div>
+						
+						<!-- PROGETTI -->
+						<div class="col-2">
+						<a th:href="@{/progetti}">
+						<button class="btn btn-success"><img width="25" height="25"
+						src="https://image.flaticon.com/icons/svg/2909/2909653.svg"
+						class="loaded"> PROGETTI</button>
+						</a> 
+						</div>
+						
+						<!-- UTENTI -->
+						
+						<div th:if="${ruolo == 'ADMIN'}" class="col-2">
+						
+						<a th:href="@{/utenti}">
+						<button class="btn btn-warning"><img width="25" height="25"
+						src="https://image.flaticon.com/icons/png/512/2885/2885427.png"
+						class="loaded"> UTENTI</button>
+						</a> 
+			
+						</div>
+						
+						<!-- TAGS -->
+						<div th:if="${ruolo == 'ADMIN'}" class="col-2">
+						<a th:href="@{/tags}">
+						<button class="btn btn-primary"><img width="25" height="25"
+						src="https://image.flaticon.com/icons/png/512/902/902042.png"
+						class="loaded"> TAGS</button>
+						</a> 
+						</div>
+						
+						<!-- LOGOUT -->
+						<div class="col-2">
+						<form th:action="@{/logout}" method="post">
+						<button class="btn btn-danger" type="submit"><img width="25" height="25"
+						src="https://image.flaticon.com/icons/svg/2699/2699261.svg"
+						class="loaded"> LOGOUT</button>
+						</form> 
+						</div>
+						<div class="col-1"></div>
+						</div>
+						
+						</div>
+
+					</div>
+				</div>
+			
+			</div>
+		</div>
+	
+	
 	</div>
-</body>
-<div lang="en" th:replace="fragments/footer :: footer"></div>
+
+
 </html>

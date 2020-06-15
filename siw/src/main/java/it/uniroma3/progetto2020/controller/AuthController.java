@@ -38,5 +38,26 @@ public class AuthController {
 		this.credentialService.saveCredential(credentials);
 		return "redirect:/login";	
 	}
+	
+	@RequestMapping(value="/login", method = RequestMethod.GET)
+	public String loginPage() {
+		return "login/login";
+	}
+	
+	@RequestMapping(value="/login",method=RequestMethod.POST)
+	public String login() {
+		return "redirect:/utente/me";
+	}
+	
+	@RequestMapping(value="/")
+	public String index() {
+		return "redirect:/utente/me";
+	}
+	
+	@RequestMapping(value="/logout",method=RequestMethod.GET)
+	public String logout() {
+		sessionData=new SessionData();
+		return "logout";
+	}
 
 }

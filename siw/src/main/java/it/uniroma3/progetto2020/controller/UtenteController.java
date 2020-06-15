@@ -1,6 +1,7 @@
 package it.uniroma3.progetto2020.controller;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,6 +27,7 @@ public class UtenteController {
 	
 	@RequestMapping("/utente/me")
 	public String myProfile(Model model) {
+		model.addAttribute("ruolo", this.session.getLoggedCredentials().getRole());
 		model.addAttribute("utente",this.utenteService.getUtenteById(this.session.getLoggedUser().getId()).get());
 		return "utenti/utente";
 	}
@@ -55,15 +57,10 @@ public class UtenteController {
 		return "redirect:/";
 	}
 	
-	@RequestMapping(value="/utenti/delete/{id}",method=RequestMethod.GET)
+	@RequestMapping(value="/utenti/delete/{id}")
 	public String delete(Model model,@PathVariable("id") Long id) {
-		model.addAttribute("utente",this.utenteService.getUtenteById(id).get());
-		return "utenti/deleteUtente";
-	}
-	
-	@RequestMapping(value="/utenti/delete",method=RequestMethod.POST)
-	public String processDelete(@ModelAttribute("utente") Utente utente) {
-		this.utenteService.deleteUtente(utente.getId());
+		if(!id.equals(this.session.getLoggedUser().getId()))
+		this.utenteService.deleteUtente(id);
 		return "redirect:/utenti";
 	}
 

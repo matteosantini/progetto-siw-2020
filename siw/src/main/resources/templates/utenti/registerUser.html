@@ -1,43 +1,95 @@
-<!DOCTYPE html>
-<html lang="en"
-      xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="https://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head lang="en" th:replace="fragments/header :: header">
-
+</head>
 <body>
-<h1>Registra un nuovo utente</h1>
-<form id = "registerUserForm"
-      th:action="@{/utenti/register}"
-      method="POST">
+	<div class="card">
 
-    <table>
-        <tr>
-            <td><label for="usernameInput">Username</label>
-            <td><input id=usernameInput type="text" th:field="${credentialsForm.username}" placeholder="USERNAME" required/></td>
-            <td th:if="${#fields.hasErrors('credentialsForm.username')}" th:errors="${credentialsForm.username}" th:style="'color:red'"></td>
-        </tr>
-        <tr>
-            <td><label for="passwordInput">Password</label></td>
-            <td><input id="passwordInput" type="password" th:field="${credentialsForm.password}" placeholder="PASSWORD" required/></td>
-            <td th:if="${#fields.hasErrors('credentialsForm.password')}" th:errors="${credentialsForm.password}" th:style="'color:red'"></td>
-        </tr>
-        <tr>
-            <td><label for="nomeInput">First Name</label></td>
-            <td><input id="nomeInput" type="text" th:field="${userForm.nome}" placeholder="FIRST NAME" required/></td>
-            <td th:if="${#fields.hasErrors('userForm.nome')}" th:errors="${userForm.nome}" th:style="'color:red'"></td>
-        </tr>
-        <tr>
-            <td><label for="cognomeInput">Last Name</label></td>
-            <td><input id="cognomeInput" type="text" th:field="${userForm.cognome}" placeholder="LAST NAME" required/></td>
-            <td th:if="${#fields.hasErrors('userForm.cognome')}" th:errors="${userForm.cognome}" th:style="'color:red'"></td>
-        </tr>
-        <tr>
-            <td>
-                <button type="submit">Register</button>
-            </td>
-        </tr>
-    </table>
-</form>
-</body>
-<div lang="en" th:replace="fragments/footer :: footer"></div>
+		<div class="card-header">
+			<div class="row">
+				<div class="col-4"></div>
+				<div class="col-1">
+					<img width="60" height="60"
+						src="https://image.flaticon.com/icons/svg/2170/2170153.svg"
+						class="loaded" style="margin-left: 65%">
+				</div>
+				<div class="col-3">
+					<b><h1 class="display-4">Login</h1></b>
+				</div>
+			</div>
+		</div>
+		<div class="card-body">
+			<div class="row">
+
+				<div class="col-4"></div>
+
+				<div class="col-4">
+					<form id="registerUserForm" th:action="@{/utenti/register}"
+						method="POST">
+						<div class="card">
+							<div class="card-header">Inserisci i dati per il login</div>
+
+							<div class="card-body">
+
+								<!--  NOME -->
+								<div class="input-group mb-3">
+									<div class="input-group-prepend">
+										<span class="input-group-text" id="basic-addon1">Nome:</span>
+									</div>
+									<input type="text" id="data-progetto" class="form-control"
+										placeholder="Nome" aria-label="Username"
+										aria-describedby="basic-addon1" name="username" th:field="${userForm.nome}">
+								</div>
+
+								<!-- PASSWORD -->
+								<div class="input-group mb-3">
+									<div class="input-group-prepend">
+										<span class="input-group-text" id="basic-addon1">Cognome:</span>
+									</div>
+									<input type="text" id="data-progetto" class="form-control"
+										placeholder="Password" aria-label="Username"
+										aria-describedby="basic-addon1" name="password" th:field="${userForm.cognome}">
+								</div>
+								
+																<!--  NOME -->
+								<div class="input-group mb-3">
+									<div class="input-group-prepend">
+										<span class="input-group-text" id="basic-addon1">Username:</span>
+									</div>
+									<input type="text" id="data-progetto" class="form-control"
+										placeholder="Nome" aria-label="Username"
+										aria-describedby="basic-addon1" name="username" th:field="${credentialsForm.username}">
+								</div>
+
+								<!-- PASSWORD -->
+								<div class="input-group mb-3">
+									<div class="input-group-prepend">
+										<span class="input-group-text" id="basic-addon1">Password:</span>
+									</div>
+									<input type="password" id="data-progetto" class="form-control"
+										placeholder="Password" aria-label="Username"
+										aria-describedby="basic-addon1" name="password" th:field="${credentialsForm.password}">
+								</div>
+
+							</div>
+
+
+							<div class="card-footer">
+								<button type="submit" class="btn btn-success"
+									style="float: right">Registrati</button>
+
+								<a href="/login">
+									<button type="button" class="btn btn-info"
+										style="float: right; margin-right: 2%">Annulla</button>
+								</a>
+
+							</div>
+						</div>
+					</form>
+				</div>
+
+			</div>
+		</div>
+
+
+	</div>
 </html>

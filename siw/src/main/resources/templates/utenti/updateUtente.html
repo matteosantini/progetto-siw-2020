@@ -1,34 +1,73 @@
-<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head lang="en" th:replace="fragments/header :: header"><body>
-	<header th:replace="fragments/base.html :: intestazione"></header>
-	<div>
-		<h4>Aggiorna i dati di un utente</h4>
+<head lang="en" th:replace="fragments/header :: header">
+</head>
+<body>
+	<div class="card">
+
+		<div class="card-header">
+			<div class="row">
+				<div class="col-4">
+					
+				</div>
+				<div class="col-1">
+					<img width="60" height="60"
+						src="https://image.flaticon.com/icons/svg/2970/2970785.svg"
+						class="loaded" style="margin-left:65%">
+				</div>
+				<div class="col-6">
+					<b><h1 class="display-4">Modifica dati</span></h1></b>
+				</div>
+			</div>
+		</div>
+		<div class="card-body">
+			<div class="row">
+				
+				<div class="col-4">
+				
+				</div>
+				
+				<div class="col-4">
+					<form th:action="@{/utenti/update}" method="POST" th:object="${utente}">
+					<input type="hidden" th:field="*{id}" value="*{id}"/>
+					<div class="card">
+						<div class="card-header">
+    						Inserisci i dati per il login
+ 				 		</div>
+ 				 		
+						<div class="card-body">
+						
+						<!--  NOME -->
+						<div class="input-group mb-3">
+								<div class="input-group-prepend">
+									<span class="input-group-text" id="basic-addon1">Nome:</span>
+								</div>
+						<input type="text" id="data-progetto" class="form-control" placeholder="Nome"
+								aria-label="Username" aria-describedby="basic-addon1" th:field="*{nome}" value="*{nome}">
+						</div>
+						
+						<!-- PASSWORD -->
+						<div class="input-group mb-3">
+								<div class="input-group-prepend">
+									<span class="input-group-text" id="basic-addon1">Cognome:</span>
+								</div>
+						<input type="text" id="data-progetto" class="form-control" placeholder="Password"
+								aria-label="Username" aria-describedby="basic-addon1" th:field="*{cognome}" value="*{cognome}">
+						</div>
+						 
+						</div>
+						<div class="card-footer">
+							<button type="submit" class="btn btn-success" style="float:right">Salva</button>
+							<button class="btn btn-info" style="float:right; margin-right:2%">Annulla</button>
+						</div>
+					</div>
+					</form>		
+				</div>
+			
+			</div>
+		</div>
+	
+	
 	</div>
-	<form th:action="@{/utenti/update}" method="POST" th:object="${utente}">
-		<div th:if="${#fields.hasGlobalErrors()}">
-  			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
-		</div>		
-		<table>
-		<tr>
-				<td><input type="hidden" th:field="*{id}" value="*{id}" readonly/></td>
-				<td th:if="${#fields.hasErrors('id')}" th:errors="*{id}"></td>
-			</tr>
-			<tr>
-				<td>Nome:</td>
-				<td><input type="text" th:field="*{nome}" value="*{nome}"/></td>
-				<td th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></td>
-			</tr>
-			<tr>
-				<td>Cognome:</td>
-				<td><input type="text" th:field="*{cognome}" value="*{cognome}"/></td>
-				<td th:if="${#fields.hasErrors('cognome')}" th:errors="*{cognome}"></td>
-			</tr>
-			<tr>
-				<td><button type="submit">Invio</button></td>
-			</tr>
-		</table>
-	</form>
-	<div lang="en" th:replace="fragments/footer :: footer"></div>
-</body>
+
+
 </html>

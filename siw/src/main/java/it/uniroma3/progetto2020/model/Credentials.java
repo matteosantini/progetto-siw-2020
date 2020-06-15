@@ -82,6 +82,12 @@ public class Credentials {
 		this.utente = utente;
 	}
 	
+	@Override
+	public boolean equals(Object obj) {
+		Credentials c=(Credentials)obj;
+		return this.username.equalsIgnoreCase(c.getUsername());
+	}
+	
 	
 
 }

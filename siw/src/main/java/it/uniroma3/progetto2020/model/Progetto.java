@@ -13,6 +13,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -21,7 +22,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.lang.Nullable;
 
 
-@Entity
+@Entity(name="progetto")
 public class Progetto {
 
 	@Id
@@ -39,7 +40,8 @@ public class Progetto {
 	@ManyToOne(fetch=FetchType.EAGER)
 	private Utente proprietario;	
 	
-	@ManyToMany
+	@ManyToMany(mappedBy="progettiAutorizzati")
+	//@JoinColumn(name="id_utente")
 	private List<Utente> utentiAutorizzati;
 	
 	@ManyToMany(mappedBy="progetti",cascade=CascadeType.PERSIST)

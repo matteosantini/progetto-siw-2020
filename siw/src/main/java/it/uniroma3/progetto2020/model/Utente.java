@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -24,6 +25,7 @@ public class Utente {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="id")
 	private Long id;
 
 	private String nome;
@@ -34,8 +36,9 @@ public class Utente {
 	@OneToMany(mappedBy="proprietario",cascade= CascadeType.ALL)
 	private List<Progetto> progettiPosseduti;
 
-	@ManyToMany (mappedBy="utentiAutorizzati") //nel caso di errori
-	//@JoinTable(name="utentiprogetti")
+	@ManyToMany //(mappedBy="utentiAutorizzati") //nel Dcaso di errori
+	@JoinTable(name="utentiprogetti", joinColumns=@JoinColumn(name="id_utente"),inverseJoinColumns = @JoinColumn(name="id_progetto"))
+	
 	private List<Progetto> progettiAutorizzati;
 	
 	@OneToMany(mappedBy="autore",cascade=CascadeType.ALL)
@@ -151,40 +154,8 @@ public class Utente {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Utente other = (Utente) obj;
-		if (cognome == null) {
-			if (other.cognome != null)
-				return false;
-		} else if (!cognome.equals(other.cognome))
-			return false;
-		if (creazione == null) {
-			if (other.creazione != null)
-				return false;
-		} else if (!creazione.equals(other.creazione))
-			return false;
-		if (nome == null) {
-			if (other.nome != null)
-				return false;
-		} else if (!nome.equals(other.nome))
-			return false;
-		
-		if (progettiAutorizzati == null) {
-			if (other.progettiAutorizzati != null)
-				return false;
-		} else if (!progettiAutorizzati.equals(other.progettiAutorizzati))
-			return false;
-		if (progettiPosseduti == null) {
-			if (other.progettiPosseduti != null)
-				return false;
-		} else if (!progettiPosseduti.equals(other.progettiPosseduti))
-			return false;
-		return true;
+		Utente u=(Utente)obj;
+		return this.credentials.equals(u.getCredentials());
 	}
 
 

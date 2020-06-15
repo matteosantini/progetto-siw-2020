@@ -73,9 +73,9 @@ public class ProgettoServiceImpl implements ProjectService {
 		return this.progettoRepository.findByProprietarioId(idProprietario);
 	}
 
-//	@Override
-//	public List<Utente> getUtentiProgettoNonAutorizzati() {
-//		return this.progettoRepository.getUtentiNonAutorizzati();
-//	}
+	@Override
+	public List<Utente> getUtentiProgettoNonAutorizzati() {
+		return this.progettoRepository.getUtentiNonAutorizzati();
+	}
 
 }

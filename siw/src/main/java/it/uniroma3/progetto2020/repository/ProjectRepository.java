@@ -21,8 +21,8 @@ public interface ProjectRepository extends CrudRepository<Progetto, Long>{
 	
 	public List<Progetto> findByProprietarioId(Long id);
 
-	@Query("SELECT u FROM utente u left join u.progettiAutorizzati pu where pu.id IS NULL")// WHERE NOT pu.id_progetto = ?1 ") 
-	public List<Utente> getUtentiNonAutorizzati();
+	@Query("SELECT u FROM utente u left join u.progettiAutorizzati pu where pu.id IS NULL AND NOT u.id=?1")// WHERE NOT pu.id_progetto = ?1 ") 
+	public List<Utente> getUtentiNonAutorizzati(Long id);
 	
 	@Query("SELECT t FROM tag t left join t.progetti tp where tp.id IS NULL")
 	public List<Tag> getTagNonInseriti();

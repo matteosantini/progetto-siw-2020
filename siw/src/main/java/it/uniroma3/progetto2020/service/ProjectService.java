@@ -19,7 +19,7 @@ public interface ProjectService{
 	public void condiviProgetto(Long id);
 	public Iterable<Progetto> getAllProgetto();
 	public List<Progetto> getByProprietario(Long idProprietario);
-	public List<Utente> getUtentiProgettoNonAutorizzati();
+	public List<Utente> getUtentiProgettoNonAutorizzati(Long id);
 	public List<Tag> getTagNonInseriti();
 	public List<Tag> getTagInseriti();
 }

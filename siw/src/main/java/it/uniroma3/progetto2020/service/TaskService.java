@@ -15,6 +15,6 @@ public interface TaskService {
 	void deleteTask(Task task);
 	public Task getTaskById(Long id);
 	public List<Tag> getTagNonInseriti();
-	public List<Utente> getUtentiNonInseriti();
+	public List<Utente> getUtentiNonInseriti(Long id);
 	public List<Task> tasksProgettoCondiviso(Long id_p, Long id_u);
 }

@@ -42,8 +42,8 @@ public class TaskServiceImpl implements TaskService{
 	}
 
 	@Override
-	public List<Utente> getUtentiNonInseriti() {
-		return this.taskRepository.getUtentiInseriti();
+	public List<Utente> getUtentiNonInseriti(Long id) {
+		return this.taskRepository.getUtentiInseriti(id);
 	}
 
 	@Override

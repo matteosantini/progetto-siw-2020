@@ -43,7 +43,7 @@ public class Utente {
 	@OneToMany(mappedBy="autore",cascade=CascadeType.ALL)
 	private List<Commento> commenti;
 	
-	@OneToOne(cascade=CascadeType.ALL)
+	@OneToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
 	private Credentials credentials;
 	
 	@ManyToMany

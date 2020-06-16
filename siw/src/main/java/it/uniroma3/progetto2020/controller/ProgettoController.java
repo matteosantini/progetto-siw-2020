@@ -106,8 +106,8 @@ public class ProgettoController {
 	@RequestMapping(value="/share-prog/{id}", method= RequestMethod.GET)
 	public String shareShowProgetto(Model model,@PathVariable("id") Long id) {
 		this.progettoCorrente=this.progettoService.findProgetto(id);
-		List<Utente> utentiNonAutorizzati=this.progettoService.getUtentiProgettoNonAutorizzati();
-		utentiNonAutorizzati.remove(this.progettoCorrente.getProprietario());
+		List<Utente> utentiNonAutorizzati=this.progettoService.getUtentiProgettoNonAutorizzati(this.session.getLoggedUser().getId());
+		//utentiNonAutorizzati.remove(this.progettoCorrente.getProprietario());
 		model.addAttribute("utenti",utentiNonAutorizzati);
 		return "progetti/progetto-share-send";
 	}

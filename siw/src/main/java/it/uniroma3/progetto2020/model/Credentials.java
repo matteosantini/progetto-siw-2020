@@ -28,7 +28,7 @@ public class Credentials {
 	@Column(nullable=false)
 	private String role;
 	
-	@OneToOne(cascade=CascadeType.ALL)
+	@OneToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
 	private Utente utente;
 
 	public Credentials() {

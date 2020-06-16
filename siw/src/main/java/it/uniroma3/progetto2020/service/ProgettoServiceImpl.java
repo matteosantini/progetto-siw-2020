@@ -74,8 +74,8 @@ public class ProgettoServiceImpl implements ProjectService {
 	}
 
 	@Override
-	public List<Utente> getUtentiProgettoNonAutorizzati() {
-		return this.progettoRepository.getUtentiNonAutorizzati();
+	public List<Utente> getUtentiProgettoNonAutorizzati(Long id) {
+		return this.progettoRepository.getUtentiNonAutorizzati(id);
 	}
 	
 	@Override

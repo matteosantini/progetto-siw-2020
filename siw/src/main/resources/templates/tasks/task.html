@@ -7,7 +7,7 @@
 		<div class="card-header">
 			<div class="row">
 				<div class="col-1">
-					<img width="60" height="60"
+					<img width="100" height="100"
 						src="https://image.flaticon.com/icons/svg/916/916926.svg"
 						class="loaded">
 				</div>
@@ -23,6 +23,9 @@
 		
 		
 		<button onclick="showModalAddProject();" class="btn btn-danger" style="float:right">+ TASK</button>
+		<a href="/progetti">
+		<button class="btn btn-primary" style="float:left"> < INDIETRO </button>
+		</a>
 		
 			<table class="table table-hover " style="margin-top:3%">
 				<thead style="background-color: #e0a800; color: white;">
@@ -61,6 +64,12 @@
 						<a th:href="@{/add-commento-task/{id}(id=${taskdb.id})}">
 						<img width="30" height="30" src="https://image.flaticon.com/icons/svg/2360/2360092.svg" style="cursor:pointer" 
 						title="Aggiungi tag task" class="loaded">
+						</a>
+						
+						<!-- VISUALIZZA TAG COM TASK -->
+						<a th:href="@{/visualizza-commenti-tag/{id}(id=${taskdb.id})}">
+						<img width="30" height="30" src="https://image.flaticon.com/icons/svg/944/944926.svg" style="cursor:pointer" 
+						title="Visualizza Info" class="loaded">
 						</a>
 						
 						<!-- ELIMINA TASK -->

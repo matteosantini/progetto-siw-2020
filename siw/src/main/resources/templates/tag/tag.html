@@ -7,7 +7,7 @@
 		<div class="card-header">
 			<div class="row">
 				<div class="col-1">
-					<img width="60" height="60"
+					<img width="100" height="100"
 						src="https://image.flaticon.com/icons/svg/916/916926.svg"
 						class="loaded">
 				</div>
@@ -23,6 +23,9 @@
 		
 		
 		<button onclick="showModalAddtag();" class="btn btn-danger" style="float:right">+ TAG</button>
+		<a href="/utente/me">
+		<button class="btn btn-primary" style="float:left"> < INDIETRO </button>
+		</a>
 		
 			<table class="table table-hover " style="margin-top:3%">
 				<thead style="background-color: #e0a800; color: white;">
@@ -34,7 +37,7 @@
 				</thead>
 				<tbody th:with="count=0">
 					
-					<tr  th:each="tagdb: ${tags}">
+					<tr  th:each="tagdb: ${tags}" th:style="@{'background-color:' + ${tagdb.colore}}">
 						<td th:text="${tagdb.nome}" />
 						<td th:text="${tagdb.descrizione}"/>
 						<td>

@@ -7,7 +7,7 @@
 		<div class="card-header">
 			<div class="row">
 				<div class="col-1">
-					<img width="70" height="70"
+					<img width="100" height="100"
 						src="https://image.flaticon.com/icons/svg/3014/3014367.svg"
 						class="loaded">
 				</div>
@@ -20,6 +20,9 @@
 			</div>
 		</div>
 		<div class="card-body">
+		<a th:href="@{'/view-prog' + ${id_t}}">
+		<button class="btn btn-primary" style="float:left"> < INDIETRO </button>
+		</a>
 			<table class="table table-hover" style="margin-top: 3%">
 				<thead style="background-color: #00b018; color: white">
 					<tr>

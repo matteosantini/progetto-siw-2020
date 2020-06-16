@@ -1,0 +1,84 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en" th:replace="fragments/header :: header">
+</head>
+<body>
+	<div class="card">
+
+		<div class="card-header">
+			<div class="row">
+				<div class="col-1">
+					<img width="100" height="100"
+						src="https://image.flaticon.com/icons/svg/3027/3027472.svg"
+						class="loaded">
+				</div>
+				<div class="col-9">
+					<b><h1 class="display-4">Lista Tags <span th:text="${nometask}"></span></h1></b>
+				</div>
+				<div class="col-2">
+					
+				</div>
+			</div>
+		</div>
+		<div class="card-body">
+		
+			<table class="table table-hover" style="margin-top: 3%">
+				<thead style="background-color: #007bff; color: white">
+					<tr>
+						<th scope="col">Nome</th>
+						<th scope="col">Descrizione</th>
+					</tr>
+				</thead>
+				<tbody th:with="count=0">
+					
+					<tr  th:each="tagdb: ${tags}" th:style="@{'background-color:' + ${tagdb.colore}}">
+						<td th:text="${tagdb.nome}" />
+						<td th:text="${tagdb.descrizione}" />
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	
+		<div class="card">
+
+		<div class="card-header">
+			<div class="row">
+				<div class="col-1">
+					<img width="100" height="100"
+						src="https://image.flaticon.com/icons/svg/3023/3023208.svg"
+						class="loaded">
+				</div>
+				<div class="col-9">
+					<b><h1 class="display-4">Lista Commenti</h1></b>
+				</div>
+				<div class="col-2">
+					
+				</div>
+			</div>
+		</div>
+		<div class="card-body">
+		
+			<table class="table table-hover" style="margin-top: 3%">
+				<thead style="background-color: #8800ff; color: white">
+					<tr>
+						<th scope="col">Utente</th>
+						<th scope="col">Commento</th>
+					</tr>
+				</thead>
+				<tbody th:with="count=0">
+					
+					<tr  th:each="commentodb: ${commenti}">
+						<td th:text="${commentodb.autore.nome}" />
+						<td th:text="${commentodb.testo}"/>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+</body>
+
+<div lang="en" th:replace="fragments/footer :: footer"></div>
+
+
+</html>

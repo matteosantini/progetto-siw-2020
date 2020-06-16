@@ -25,7 +25,7 @@ public class Commento {
 	@ManyToOne(fetch=FetchType.LAZY)
 	private Task task;
 	
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER)
 	private Utente autore;
 
 	public Commento() {

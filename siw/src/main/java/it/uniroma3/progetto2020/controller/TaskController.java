@@ -140,6 +140,7 @@ public class TaskController {
 	
 	@RequestMapping(value="/utente-task/{id}",method=RequestMethod.GET)
 	public String viewUtenteTask(@PathVariable("id") Long id_task, Model model) {
+		model.addAttribute("id_t", id_task);
 		List<Utente> utentiNonInseriti = this.taskService.getUtentiNonInseriti();
 		utentiNonInseriti.remove(this.session.getLoggedUser());
 		model.addAttribute("utenti", utentiNonInseriti);
@@ -155,5 +156,14 @@ public class TaskController {
 		this.taskService.saveTask(this.taskCorrente);
 		this.utenteService.saveUtente(u);
 		return "redirect:/utente-task/"+ this.taskCorrente.getId();
+	}
+	
+	@RequestMapping(value="/visualizza-commenti-tag/{id}",method=RequestMethod.GET)
+	public String viewInfoTask(@PathVariable("id") Long id_task, Model model) {
+		this.taskCorrente = this.taskService.getTaskById(id_task);
+		model.addAttribute("nometask", this.taskCorrente.getNome());
+		model.addAttribute("tags", this.taskCorrente.getTags());
+		model.addAttribute("commenti", this.taskCorrente.getCommenti());
+		return "tasks/view-info-task";
 	}
 }

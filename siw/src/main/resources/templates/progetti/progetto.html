@@ -34,7 +34,7 @@
 				</thead>
 				<tbody th:with="count=0">
 					
-					<tr  th:each="progettodb: ${progetti}" >
+					<tr  th:each="progettodb: ${progetti}" class="table-light">
 						<td th:text="${progettodb.nome}" />
 						<td th:text="${progettodb.datadiinizio}" pattern="dd-MM-yyyy" placeholder="dd-mm-yyyy"/>
 						<td>
@@ -72,6 +72,53 @@
 						
 						<img onclick="test();" width="30" height="30" src="https://image.flaticon.com/icons/svg/1828/1828843.svg" style="cursor:pointer" 
 						title="Elimina task" class="loaded"> -->
+						
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	
+		<div class="card">
+
+		<div class="card-header">
+			<div class="row">
+				<div class="col-1">
+					<img width="60" height="60"
+						src="https://image.flaticon.com/icons/png/512/3029/3029013.png"
+						class="loaded">
+				</div>
+				<div class="col-9">
+					<b><h1 class="display-4">Lista Progetti Condivisi</h1></b>
+				</div>
+				<div class="col-2">
+					
+				</div>
+			</div>
+		</div>
+		<div class="card-body">
+		
+			<table class="table table-hover" style="margin-top: 3%">
+				<thead style="background-color: #8800ff; color: white">
+					<tr>
+						<th scope="col">Nome</th>
+						<th scope="col">Data</th>
+						<th scope="col">Azioni</th>
+					</tr>
+				</thead>
+				<tbody th:with="count=0">
+					
+					<tr  th:each="progettodb: ${progetti_condivisi}" class="table-warning">
+						<td th:text="${progettodb.nome}" />
+						<td th:text="${progettodb.datadiinizio}" pattern="dd-MM-yyyy" placeholder="dd-mm-yyyy"/>
+						<td>
+						
+						<!-- VISUALIZZA PROGETTO -->
+						<a th:href="@{/view-prog-condivisi/{id}(id=${progettodb.id})}">
+						<img width="30" height="30" src="https://image.flaticon.com/icons/svg/1269/1269549.svg" style="cursor:pointer" 
+						title="Visualizza progetto" class="loaded">
+						</a>
 						
 						</td>
 					</tr>

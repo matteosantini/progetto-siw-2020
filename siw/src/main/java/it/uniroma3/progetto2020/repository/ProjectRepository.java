@@ -29,4 +29,8 @@ public interface ProjectRepository extends CrudRepository<Progetto, Long>{
 	
 	@Query("SELECT t FROM tag t left join t.progetti tp where tp.id IS NOT NULL")
 	public List<Tag> getTagInseriti();
+	
+	@Query("SELECT p FROM progetto p INNER JOIN p.utentiAutorizzati pu WHERE pu.id= ?1")
+	public List<Progetto> getProgettiCondivisi(Long id_utente);
+	
 }

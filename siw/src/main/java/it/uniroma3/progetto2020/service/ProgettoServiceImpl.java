@@ -53,8 +53,7 @@ public class ProgettoServiceImpl implements ProjectService {
 
 	@Override
 	public List<Progetto> getProgettiCondivisi(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return this.progettoRepository.getProgettiCondivisi(id);
 	}
 
 	@Override

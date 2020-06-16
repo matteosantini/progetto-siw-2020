@@ -54,6 +54,7 @@ public class ProgettoController {
 		Utente u = this.session.getLoggedUser();
 		model.addAttribute("progetto", new Progetto());
 		model.addAttribute("progetti", this.progettoService.getByProprietario(u.getId()));
+		model.addAttribute("progetti_condivisi", this.progettoService.getProgettiCondivisi(u.getId()));
 		return "progetti/progetto";
 	}
 

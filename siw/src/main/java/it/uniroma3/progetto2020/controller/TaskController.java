@@ -1,5 +1,8 @@
 package it.uniroma3.progetto2020.controller;
 
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -45,12 +48,23 @@ public class TaskController {
 	private Task taskCorrente;
 	
 	@RequestMapping(value = "/view-prog/{id}", method = RequestMethod.GET)
-	public String task(@PathVariable("id") long id, Model model) {
+	public String task(@PathVariable("id") Long id, Model model) {
 		Progetto p = progettoService.findProgetto(id);
 		model.addAttribute("nomeprogetto", p.getNome());
 		model.addAttribute("task", new Task());
 		model.addAttribute("id_progetto",id);
 		model.addAttribute("tasks", p.getTaskProgetto());
+		return "tasks/task";
+	}
+	
+	@RequestMapping(value = "/view-prog-condivisi/{id}", method = RequestMethod.GET)
+	public String taskProg(@PathVariable("id") Long id, Model model) {
+		Progetto p = progettoService.findProgetto(id);
+		model.addAttribute("nomeprogetto", p.getNome());
+		model.addAttribute("task", new Task());
+		model.addAttribute("id_progetto",id);
+		Long id_u = this.session.getLoggedUser().getId();
+		model.addAttribute("tasks", this.taskService.tasksProgettoCondiviso(id, id_u));
 		return "tasks/task";
 	}
 	
@@ -126,7 +140,9 @@ public class TaskController {
 	
 	@RequestMapping(value="/utente-task/{id}",method=RequestMethod.GET)
 	public String viewUtenteTask(@PathVariable("id") Long id_task, Model model) {
-		model.addAttribute("utenti",this.taskService.getUtentiNonInseriti());
+		List<Utente> utentiNonInseriti = this.taskService.getUtentiNonInseriti();
+		utentiNonInseriti.remove(this.session.getLoggedUser());
+		model.addAttribute("utenti", utentiNonInseriti);
 		this.taskCorrente=this.taskService.getTaskById(id_task);
 		return "tasks/utente-task";
 	}

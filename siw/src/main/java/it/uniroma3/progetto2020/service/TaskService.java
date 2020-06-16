@@ -16,4 +16,5 @@ public interface TaskService {
 	public Task getTaskById(Long id);
 	public List<Tag> getTagNonInseriti();
 	public List<Utente> getUtentiNonInseriti();
+	public List<Task> tasksProgettoCondiviso(Long id_p, Long id_u);
 }

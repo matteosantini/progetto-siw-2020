@@ -45,5 +45,10 @@ public class TaskServiceImpl implements TaskService{
 	public List<Utente> getUtentiNonInseriti() {
 		return this.taskRepository.getUtentiInseriti();
 	}
+
+	@Override
+	public List<Task> tasksProgettoCondiviso(Long id_p, Long id_u) {
+		return this.taskRepository.tasksProgettoCondiviso(id_p, id_u);
+	}
 	
 }

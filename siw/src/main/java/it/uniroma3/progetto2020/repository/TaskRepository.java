@@ -16,4 +16,7 @@ public interface TaskRepository extends CrudRepository<Task, Long>{
 	
 	@Query("SELECT u FROM utente u LEFT JOIN u.tasks ut INNER JOIN u.progettiAutorizzati up WHERE ut IS NULL")
 	public List<Utente> getUtentiInseriti();
+	
+	@Query("SELECT t FROM task t INNER JOIN t.utenti tu WHERE t.progettotask.id = ?1 AND tu.id = ?2")
+	public List<Task> tasksProgettoCondiviso(Long id_progetto, Long id_utente);
 }

@@ -38,7 +38,6 @@ public class Utente {
 
 	@ManyToMany //(mappedBy="utentiAutorizzati") //nel Dcaso di errori
 	@JoinTable(name="utentiprogetti", joinColumns=@JoinColumn(name="id_utente"),inverseJoinColumns = @JoinColumn(name="id_progetto"))
-	
 	private List<Progetto> progettiAutorizzati;
 	
 	@OneToMany(mappedBy="autore",cascade=CascadeType.ALL)

@@ -53,6 +53,17 @@
 						<input type="text" id="data-progetto" class="form-control" placeholder="Password"
 								aria-label="Username" aria-describedby="basic-addon1" th:field="*{cognome}" value="*{cognome}">
 						</div>
+						
+						<!-- RUOLO -->
+						<div class="input-group mb-3">
+								<div class="input-group-prepend">
+									<span class="input-group-text" id="basic-addon1">Ruolo:</span>
+								</div>
+						<input type="text" id="data-progetto" class="form-control" th:value="${credenziali.role}"
+								aria-label="Username" aria-describedby="basic-addon1"  readonly>
+						
+						<input type="hidden" th:value="${credenziali.id}" name="id_credenziali">
+						</div>
 						 
 						</div>
 						<div class="card-footer">

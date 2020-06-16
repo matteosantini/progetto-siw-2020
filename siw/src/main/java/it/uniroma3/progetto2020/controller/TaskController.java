@@ -140,11 +140,12 @@ public class TaskController {
 	
 	@RequestMapping(value="/utente-task/{id}",method=RequestMethod.GET)
 	public String viewUtenteTask(@PathVariable("id") Long id_task, Model model) {
-		model.addAttribute("id_t", id_task);
+		this.taskCorrente=this.taskService.getTaskById(id_task);
+		model.addAttribute("id_p", this.taskCorrente.getProgetto().getId());
 		List<Utente> utentiNonInseriti = this.taskService.getUtentiNonInseriti(this.session.getLoggedUser().getId());
 		//utentiNonInseriti.remove(this.session.getLoggedUser());
 		model.addAttribute("utenti", utentiNonInseriti);
-		this.taskCorrente=this.taskService.getTaskById(id_task);
+		
 		return "tasks/utente-task";
 	}
 	

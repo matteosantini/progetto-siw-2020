@@ -14,7 +14,7 @@
 				</div>
 			</div>
 </div>
-<form action="#" th:action="@{/task-mod-send}" th:object="${taskmod}" method="post">
+<form action="#" th:action="@{/task-mod-send/{id}(id=${taskmod.id})}" th:object="${taskmod}" method="post">
 <input type="hidden" name="id_progetto" th:value="${progetto_id}"/>
 <input type="hidden" th:field="*{id}" value="${id}" readonly/>
 	<div class="modal-body">
@@ -29,9 +29,9 @@
 
 		<div class="input-group mb-3">
 			<div class="input-group-prepend">
-				<span class="input-group-text" id="basic-addon1">Inizio:</span>
+				<span class="input-group-text" id="basic-addon1">Descrizione:</span>
 			</div>
-			<input type="text" id="data-task" class="form-control"
+			<input type="text" id="descrizione-task" class="form-control"
 				placeholder="Nome task" aria-label="Username"
 				aria-describedby="basic-addon1" th:field="*{descrizione}" value="${descrizione}">
 		</div>

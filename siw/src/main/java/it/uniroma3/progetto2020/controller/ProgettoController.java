@@ -86,8 +86,11 @@ public class ProgettoController {
 
 	@RequestMapping(value = "/progetti-mod-send/{id}", method = RequestMethod.POST)
 	public String editProgetto(@ModelAttribute("progettomod") Progetto progetto, @PathVariable("id") Long id, Model model) {
-		progetto.setProprietario(this.session.getLoggedUser());
-		this.progettoService.saveProgetto(progetto);
+		Progetto p = this.progettoService.findProgetto(id);
+		p.setNome(progetto.getNome());
+		p.setDatadiinizio(progetto.getDatadiinizio());
+		//progetto.setProprietario(this.session.getLoggedUser());
+		this.progettoService.saveProgetto(p);
 		return "redirect:/progetti";
 	}
 	

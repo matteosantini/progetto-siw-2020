@@ -85,12 +85,16 @@ public class TaskController {
 		return "tasks/mod-task";
 	}
 	
-	@RequestMapping(value="/task-mod-send", method = RequestMethod.POST)
-	public String saveTaskEdit(Model model, @ModelAttribute("taskmod") Task task, @RequestParam("id_progetto") Long id){
-		Progetto p = progettoRepository.findById(id).get();
-		task.setProgetto(p);
-		task.setProrietario(session.getLoggedUser());
-		return "redirect:/view-prog/" + task.getProgetto().getId();
+	@RequestMapping(value="/task-mod-send/{id}", method = RequestMethod.POST)
+	public String saveTaskEdit(Model model, @ModelAttribute("taskmod") Task task, @RequestParam("id_progetto") Long id,@PathVariable("id") Long id_task){
+		Task t = this.taskService.getTaskById(id_task);
+		//Progetto p = progettoRepository.findById(id).get();
+		//task.setProgetto(p);
+		//task.setProrietario(session.getLoggedUser());
+		t.setNome(task.getNome());
+		t.setDescrizione(task.getDescrizione());
+		this.taskService.saveTask(t);
+		return "redirect:/view-prog/" + t.getProgetto().getId();
 	}
 	
 	@RequestMapping(value="/delete-task/{id}", method = RequestMethod.GET)

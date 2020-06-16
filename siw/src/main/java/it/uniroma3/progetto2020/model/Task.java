@@ -34,7 +34,7 @@ public class Task {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDateTime creazione;
 	
-	private String colore;
+	
 	
 	@OneToOne
 	private Utente prorietario;
@@ -64,7 +64,6 @@ public class Task {
 		this.nome = nome;
 		this.descrizione = descrizione;
 		this.prorietario = prorietario;
-		this.colore=colore;
 		this.creazione=LocalDateTime.now();
 	}
 
@@ -106,14 +105,6 @@ public class Task {
 
 	public void setProrietario(Utente prorietario) {
 		this.prorietario = prorietario;
-	}
-	
-	public void setColore(String colore) {
-		this.colore=colore;
-	}
-	
-	public String getColore() {
-		return this.colore;
 	}
 	
 	public void setProgetto(Progetto p){

@@ -32,6 +32,7 @@
 					<tr>
 						<th scope="col">Nome</th>
 						<th scope="col">Data</th>
+						<th scope="col">Descrizione</th>
 						<th scope="col">Azioni</th>
 					</tr>
 				</thead>
@@ -39,6 +40,7 @@
 					
 					<tr  th:each="taskdb: ${tasks}">
 						<td th:text="${taskdb.nome}" />
+						<td th:text="${taskdb.creazione}"/>
 						<td th:text="${taskdb.descrizione}"/>
 						<td>
 						

@@ -1,0 +1,78 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en" th:replace="fragments/header :: header">
+</head>
+<body>
+	<div class="card">
+
+		<div class="card-header">
+			<div class="row">
+				<div class="col-4">
+					
+				</div>
+				<div class="col-1">
+					<img width="60" height="60"
+						src="https://image.flaticon.com/icons/svg/2170/2170153.svg"
+						class="loaded" style="margin-left:65%">
+				</div>
+				<div class="col-3">
+					<b><h1 class="display-4">Login</h1></b>
+				</div>
+			</div>
+		</div>
+		<div class="card-body">
+			<div class="row">
+				
+				<div class="col-4">
+				
+				</div>
+				
+				<div class="col-4">
+					<form action="#" th:action="@{/login}" method="post">
+					<div class="card">
+						<div class="card-header">
+    						Inserisci i dati per il login
+ 				 		</div>
+ 				 		
+						<div class="card-body">
+						
+						<!--  NOME -->
+						<div class="input-group mb-3">
+								<div class="input-group-prepend">
+									<span class="input-group-text" id="basic-addon1">Nome:</span>
+								</div>
+						<input type="text" id="data-progetto" class="form-control" placeholder="Nome"
+								aria-label="Username" aria-describedby="basic-addon1" name="username">
+						</div>
+						
+						<!-- PASSWORD -->
+						<div class="input-group mb-3">
+								<div class="input-group-prepend">
+									<span class="input-group-text" id="basic-addon1">Password:</span>
+								</div>
+						<input type="password" id="data-progetto" class="form-control" placeholder="Password"
+								aria-label="Username" aria-describedby="basic-addon1" name="password">
+						</div>
+						 
+						</div>
+						
+						
+						<div class="card-footer">
+							<button type="submit" class="btn btn-success" style="float:right">Login</button>
+							
+							<a href="/utenti/register">
+							<button type="button" class="btn btn-info" style="float:right; margin-right:2%">Register</button>
+							</a>
+							
+						</div>
+					</div>
+					</form>		
+				</div>
+			
+			</div>
+		</div>
+	
+	
+	</div>
+
+
+</html>

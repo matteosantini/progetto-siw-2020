@@ -18,9 +18,9 @@
 			</div>
 		</div>
 		<div class="card-body">
-			<a href="/progetti">
-				<button class="btn btn-primary" style="float: left"><
-					INDIETRO</button>
+			<a th:href="@{'/view-prog/' + ${id_progetto}}">
+		<button class="btn btn-primary" style="float:left"> < INDIETRO </button>
+		</a>
 			</a> <input type="hidden" th:value="${progettoshare_id}" />
 			<table class="table table-hover" style="margin-top: 3%">
 				<thead style="background-color: #00b018; color: white">

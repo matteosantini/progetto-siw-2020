@@ -51,15 +51,17 @@ public class UtenteController {
 	
 	@RequestMapping(value="/utenti/update/{id}",method=RequestMethod.GET)
 	public String updateUtenteById(Model model,@PathVariable("id") Long id) {
-		model.addAttribute("credenziali", this.utenteService.getUtenteById(id).get().getCredentials());
 		model.addAttribute("utente", this.utenteService.getUtenteById(id).get());
 		return "utenti/updateUtente";
 	}
 	
-	@RequestMapping(value="/utenti/update",method=RequestMethod.POST)
-	public String processUpdateUtenteById(@ModelAttribute("updateUtente") Utente utente, @ModelAttribute("credenziali") Credentials c) {
-		utente.setModifica(LocalDateTime.now());
-		this.utenteService.saveUtente(utente);
+	@RequestMapping(value="/utenti/update/{id}",method=RequestMethod.POST)
+	public String processUpdateUtenteById(@ModelAttribute("updateUtente") Utente utente, @PathVariable("id") Long id) {
+		Utente u=this.utenteService.getUtenteById(id).get();
+		u.setNome(utente.getNome());
+		u.setCognome(utente.getCognome());
+		u.setModifica(LocalDateTime.now());
+		this.utenteService.saveUtente(u);
 		return "redirect:/";
 	}
 	

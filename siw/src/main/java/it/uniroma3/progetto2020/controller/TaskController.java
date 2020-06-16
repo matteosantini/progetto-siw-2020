@@ -105,6 +105,7 @@ public class TaskController {
 	public String showTagTask(Model model, @PathVariable("id") Long id){
 		this.taskCorrente = this.taskService.getTaskById(id);
 		Progetto p=this.progettoService.findProgetto(this.taskCorrente.getProgetto().getId());
+		model.addAttribute("id_progetto", this.taskCorrente.getProgetto().getId());
 		model.addAttribute("tags", this.taskService.getTagNonInseriti());
 		return "tag/tag-task";
 	}
@@ -123,6 +124,7 @@ public class TaskController {
 	public String showAddCommentoToTask(@PathVariable("id") Long id_task, Model model) {
 		this.taskCorrente=this.taskService.getTaskById(id_task);
 		model.addAttribute("commento", new Commento());
+		model.addAttribute("id_progetto", this.taskCorrente.getProgetto().getId());
 		return "commento/commento";
 	}
 	
@@ -162,6 +164,7 @@ public class TaskController {
 	@RequestMapping(value="/visualizza-commenti-tag/{id}",method=RequestMethod.GET)
 	public String viewInfoTask(@PathVariable("id") Long id_task, Model model) {
 		this.taskCorrente = this.taskService.getTaskById(id_task);
+		model.addAttribute("id_p", this.taskCorrente.getProgetto().getId());
 		model.addAttribute("nometask", this.taskCorrente.getNome());
 		model.addAttribute("tags", this.taskCorrente.getTags());
 		model.addAttribute("commenti", this.taskCorrente.getCommenti());

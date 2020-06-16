@@ -45,6 +45,12 @@
 						data-placement="top" title="Modifica task" class="loaded">
 						</a>
 						
+						<!-- CONDIVIDI TASK -->
+						<a th:href="@{/utente-task/{id}(id=${taskdb.id})}">
+						<img width="30" height="30" src="https://image.flaticon.com/icons/svg/1828/1828843.svg" style="cursor:pointer" 
+						title="Condividi Task" class="loaded">
+						</a>
+						
 						<!-- TAG TASK  -->
 						<a th:href="@{/tag-task/{id}(id=${taskdb.id})}">
 						<img width="30" height="30" src="https://image.flaticon.com/icons/svg/2991/2991203.svg" style="cursor:pointer" 

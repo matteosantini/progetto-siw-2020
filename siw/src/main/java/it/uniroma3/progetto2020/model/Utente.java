@@ -46,6 +46,10 @@ public class Utente {
 	
 	@OneToOne(cascade=CascadeType.ALL)
 	private Credentials credentials;
+	
+	@ManyToMany
+	@JoinTable(name="utentitasks", joinColumns=@JoinColumn(name="id_utente"),inverseJoinColumns = @JoinColumn(name="id_task"))
+	private List<Task> tasks;
 
 	public Utente() {
 		super();
@@ -54,6 +58,7 @@ public class Utente {
 		this.progettiAutorizzati=new ArrayList<Progetto>();
 		this.progettiPosseduti=new ArrayList<Progetto>();
 		this.commenti=new ArrayList<Commento>();
+		this.tasks=new ArrayList<Task>();
 		
 	}
 
@@ -138,6 +143,15 @@ public class Utente {
 
 	public void setCommenti(List<Commento> commenti) {
 		this.commenti = commenti;
+	}
+	
+
+	public List<Task> getTasks() {
+		return tasks;
+	}
+
+	public void setTasks(List<Task> tasks) {
+		this.tasks = tasks;
 	}
 
 	@Override

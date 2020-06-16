@@ -9,7 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
-@Entity
+@Entity(name="credentials")
 public class Credentials {
 	
 	public static final String DEFAULT_ROLE="DEFAULT";

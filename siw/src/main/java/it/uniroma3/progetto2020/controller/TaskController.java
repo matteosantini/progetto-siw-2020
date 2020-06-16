@@ -123,4 +123,21 @@ public class TaskController {
 		this.taskService.saveTask(this.taskCorrente);
 		return "redirect:/progetti";
 	}
+	
+	@RequestMapping(value="/utente-task/{id}",method=RequestMethod.GET)
+	public String viewUtenteTask(@PathVariable("id") Long id_task, Model model) {
+		model.addAttribute("utenti",this.taskService.getUtentiNonInseriti());
+		this.taskCorrente=this.taskService.getTaskById(id_task);
+		return "tasks/utente-task";
+	}
+	
+	@RequestMapping(value="/add-utente-task/{id}",method=RequestMethod.GET)
+	public String addUtenteToTask(@PathVariable("id") Long id_utente, Model model) {
+		Utente u=this.utenteService.getUtenteById(id_utente).get();
+		u.getTasks().add(this.taskCorrente);
+		this.taskCorrente.getUtenti().add(u);
+		this.taskService.saveTask(this.taskCorrente);
+		this.utenteService.saveUtente(u);
+		return "redirect:/utente-task/"+ this.taskCorrente.getId();
+	}
 }

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import it.uniroma3.progetto2020.model.Tag;
 import it.uniroma3.progetto2020.model.Task;
+import it.uniroma3.progetto2020.model.Utente;
 
 @Service
 public interface TaskService {
@@ -14,4 +15,5 @@ public interface TaskService {
 	void deleteTask(Task task);
 	public Task getTaskById(Long id);
 	public List<Tag> getTagNonInseriti();
+	public List<Utente> getUtentiNonInseriti();
 }

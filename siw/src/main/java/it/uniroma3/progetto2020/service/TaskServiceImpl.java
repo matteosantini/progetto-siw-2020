@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import it.uniroma3.progetto2020.model.Tag;
 import it.uniroma3.progetto2020.model.Task;
+import it.uniroma3.progetto2020.model.Utente;
 import it.uniroma3.progetto2020.repository.TaskRepository;
 
 @Service
@@ -38,6 +39,11 @@ public class TaskServiceImpl implements TaskService{
 	@Override
 	public List<Tag> getTagNonInseriti() {
 		return this.taskRepository.getTagNonInseriti();
+	}
+
+	@Override
+	public List<Utente> getUtentiNonInseriti() {
+		return this.taskRepository.getUtentiInseriti();
 	}
 	
 }

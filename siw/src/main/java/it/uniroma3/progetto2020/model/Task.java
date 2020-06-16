@@ -48,11 +48,15 @@ public class Task {
 	@OneToMany(mappedBy="task",cascade=CascadeType.REMOVE)
 	private List<Commento> commenti;
 	
+	@ManyToMany(cascade=CascadeType.REMOVE)
+	private List<Utente> utenti;
+	
 	public Task() {
 		super();
 		this.creazione=LocalDateTime.now();
 		this.tags=new ArrayList<Tag>();
 		this.commenti=new ArrayList<Commento>();
+		this.utenti=new ArrayList<Utente>();
 	}
 
 	public Task(String nome, String descrizione, Date creazione, Utente prorietario,String colore) {
@@ -134,6 +138,15 @@ public class Task {
 
 	public void setCommenti(List<Commento> commenti) {
 		this.commenti = commenti;
+	}
+	
+
+	public List<Utente> getUtenti() {
+		return utenti;
+	}
+
+	public void setUtenti(List<Utente> utenti) {
+		this.utenti = utenti;
 	}
 
 	@Override

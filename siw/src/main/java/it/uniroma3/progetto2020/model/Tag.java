@@ -28,7 +28,7 @@ public class Tag {
 	@JoinTable(name="progettotag", joinColumns = @JoinColumn(name = "id_tag"), inverseJoinColumns = @JoinColumn (name="id_progetto"))
 	private List<Progetto> progetti;
 	
-	@ManyToMany(fetch=FetchType.LAZY)
+	@ManyToMany
 	@JoinTable(name="tasktag", joinColumns = @JoinColumn(name = "id_tag"), inverseJoinColumns = @JoinColumn (name="id_task"))
 	private List<Task> tasks;
 	

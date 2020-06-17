@@ -41,11 +41,12 @@ public class Progetto {
 	@ManyToOne(fetch=FetchType.EAGER)
 	private Utente proprietario;	
 	
-	@ManyToMany(mappedBy="progettiAutorizzati")
-	//@JoinColumn(name="id_utente")
+	@ManyToMany
+	@JoinTable(name="utentiprogetti",joinColumns=@JoinColumn(name="progetto_id"),inverseJoinColumns = @JoinColumn(name="utente_id"))
 	private List<Utente> utentiAutorizzati;
 	
-	@ManyToMany(mappedBy = "progetti",cascade=CascadeType.PERSIST) 
+	@ManyToMany
+	@JoinTable(name="tasktag", joinColumns = @JoinColumn(name = "id_task"), inverseJoinColumns = @JoinColumn (name="id_tag"))
 	private List<Tag> tags;
 
 	public Progetto(String nome, Date datadiinizio, List<Task> taskProgetto, Utente proprietario,

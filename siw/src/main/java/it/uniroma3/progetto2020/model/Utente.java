@@ -36,8 +36,8 @@ public class Utente {
 	@OneToMany(mappedBy="proprietario",cascade= CascadeType.ALL)
 	private List<Progetto> progettiPosseduti;
 
-	@ManyToMany //(mappedBy="utentiAutorizzati") //nel Dcaso di errori
-	@JoinTable(name="utentiprogetti", joinColumns=@JoinColumn(name="id_utente"),inverseJoinColumns = @JoinColumn(name="id_progetto"))
+	@ManyToMany (cascade= {CascadeType.MERGE,CascadeType.PERSIST})
+	@JoinTable(name="utentiprogetti", joinColumns=@JoinColumn(name="utente_id"),inverseJoinColumns = @JoinColumn(name="progetto_id"))
 	private List<Progetto> progettiAutorizzati;
 	
 	@OneToMany(mappedBy="autore",cascade=CascadeType.ALL)
@@ -47,7 +47,7 @@ public class Utente {
 	private Credentials credentials;
 	
 	@ManyToMany
-	@JoinTable(name="utentitasks", joinColumns=@JoinColumn(name="id_utente"),inverseJoinColumns = @JoinColumn(name="id_task"))
+	@JoinTable(name="utentitasks", joinColumns=@JoinColumn(name="utente_id"),inverseJoinColumns = @JoinColumn(name="task_id"))
 	private List<Task> tasks;
 
 	public Utente() {

@@ -12,6 +12,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -42,13 +44,15 @@ public class Task {
 	@ManyToOne(fetch=FetchType.LAZY)
 	private Progetto progettotask;
 	
-	@ManyToMany(mappedBy="tasks", cascade=CascadeType.PERSIST)
+	@ManyToMany
+	@JoinTable(name="tasktag", joinColumns = @JoinColumn(name = "id_task"), inverseJoinColumns = @JoinColumn (name="id_tag"))
 	private List<Tag> tags;
 	
 	@OneToMany(mappedBy="task",cascade=CascadeType.REMOVE)
 	private List<Commento> commenti;
 	
-	@ManyToMany(cascade=CascadeType.REMOVE)
+	@ManyToMany
+	@JoinTable(name="utentitasks", joinColumns=@JoinColumn(name="task_id"),inverseJoinColumns = @JoinColumn(name="utente_id"))
 	private List<Utente> utenti;
 	
 	public Task() {

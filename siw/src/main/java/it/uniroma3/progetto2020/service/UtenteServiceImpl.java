@@ -1,5 +1,6 @@
 package it.uniroma3.progetto2020.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
@@ -38,8 +39,8 @@ public class UtenteServiceImpl implements UtenteService {
 	}
 
 	@Override
-	public Iterable<Utente> getAllUtenti() {
-		return this.utenteRepository.findAll();
+	public List<Utente> getAllUtenti(Long id) {
+		return this.utenteRepository.findAll(id);
 	}
 
 }

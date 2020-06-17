@@ -10,5 +10,5 @@ public interface UtenteService {
 	public Optional<Utente> getUtenteById(Long id);
 	public void saveUtente(Utente utente);
 	public void deleteUtente(Long id);
-	public Iterable<Utente> getAllUtenti();
+	public List<Utente> getAllUtenti(Long long1);
 }

@@ -39,7 +39,7 @@ public class UtenteController {
 	}
 	@RequestMapping("/utenti")
 	public String allUtenti(Model model) {
-		model.addAttribute("utenti",this.utenteService.getAllUtenti());
+		model.addAttribute("utenti",this.utenteService.getAllUtenti(this.session.getLoggedUser().getId()));
 		return "utenti/utenti";
 	}
 	

@@ -36,7 +36,7 @@ public class AuthConfiguration extends WebSecurityConfigurerAdapter{
                 // only authenticated users with ADMIN authority can access the admin pag
                 .antMatchers(HttpMethod.GET,"/utente/me","/utenti/update").authenticated()
                 .antMatchers(HttpMethod.POST,"/utente/me","/utenti/update").authenticated()
-                .antMatchers(HttpMethod.GET, "/admin","/utenti","/utente").hasAnyAuthority(ADMIN_ROLE)
+                .antMatchers(HttpMethod.GET, "/admin","/utenti","/utente","/tags").hasAnyAuthority(ADMIN_ROLE)
                 // all authenticated users can access all the remaining other pages
                 .anyRequest().authenticated()
 

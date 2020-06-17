@@ -41,7 +41,7 @@ public class AuthController {
 	
 	@RequestMapping(value="/login", method = RequestMethod.GET)
 	public String loginPage() {
-		return "login/login";
+			return "login/login";
 	}
 	
 	@RequestMapping(value="/login",method=RequestMethod.POST)

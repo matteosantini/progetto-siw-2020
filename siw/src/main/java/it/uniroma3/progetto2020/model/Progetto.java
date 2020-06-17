@@ -46,7 +46,7 @@ public class Progetto {
 	private List<Utente> utentiAutorizzati;
 	
 	@ManyToMany
-	@JoinTable(name="tasktag", joinColumns = @JoinColumn(name = "id_task"), inverseJoinColumns = @JoinColumn (name="id_tag"))
+	@JoinTable(name="progettotag", joinColumns = @JoinColumn(name = "id_progetto"), inverseJoinColumns = @JoinColumn (name="id_tag"))
 	private List<Tag> tags;
 
 	public Progetto(String nome, Date datadiinizio, List<Task> taskProgetto, Utente proprietario,

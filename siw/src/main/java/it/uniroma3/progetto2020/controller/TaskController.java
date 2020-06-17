@@ -108,7 +108,6 @@ public class TaskController {
 	@RequestMapping(value="/tag-task/{id}", method = RequestMethod.GET)
 	public String showTagTask(Model model, @PathVariable("id") Long id){
 		this.taskCorrente = this.taskService.getTaskById(id);
-		Progetto p=this.progettoService.findProgetto(this.taskCorrente.getProgetto().getId());
 		model.addAttribute("id_progetto", this.taskCorrente.getProgetto().getId());
 		model.addAttribute("tags", this.taskService.getTagNonInseriti());
 		return "tag/tag-task";
@@ -121,7 +120,7 @@ public class TaskController {
 		this.taskCorrente.getTags().add(t);
 		this.taskService.saveTask(this.taskCorrente);
 		this.tagService.saveTag(t);
-		return "redirect:/progetti";
+		return "redirect:/tag-task/"+ this.taskCorrente.getId();
 	}
 	
 	@RequestMapping(value="/add-commento-task/{id}",method=RequestMethod.GET)
@@ -141,7 +140,7 @@ public class TaskController {
 		this.taskCorrente.getCommenti().add(c);
 		this.utenteService.saveUtente(u);
 		this.taskService.saveTask(this.taskCorrente);
-		return "redirect:/progetti";
+		return "redirect:/view-prog/" + this.taskCorrente.getProgetto().getId();
 	}
 	
 	@RequestMapping(value="/utente-task/{id}",method=RequestMethod.GET)

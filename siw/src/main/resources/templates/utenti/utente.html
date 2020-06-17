@@ -40,7 +40,7 @@
 						<!-- MODIFICA PROFILO -->
 						<div class="col-2">
 						<a th:href="@{'/utenti/update/' + ${utente.id}}">
-						<button class="btn btn-info"><img width="25" height="25"
+						<button class="btn btn-info  btn-lg"><img width="25" height="25"
 						src="https://image.flaticon.com/icons/png/512/2948/2948257.png"
 						class="loaded"> PROFILO</button>
 						</a> 
@@ -49,7 +49,7 @@
 						<!-- PROGETTI -->
 						<div class="col-2">
 						<a th:href="@{/progetti}">
-						<button class="btn btn-success"><img width="25" height="25"
+						<button class="btn btn-success  btn-lg"><img width="25" height="25"
 						src="https://image.flaticon.com/icons/svg/2909/2909653.svg"
 						class="loaded"> PROGETTI</button>
 						</a> 
@@ -60,7 +60,7 @@
 						<div th:if="${ruolo == 'ADMIN'}" class="col-2">
 						
 						<a th:href="@{/utenti}">
-						<button class="btn btn-warning"><img width="25" height="25"
+						<button class="btn btn-warning  btn-lg"><img width="25" height="25"
 						src="https://image.flaticon.com/icons/png/512/2885/2885427.png"
 						class="loaded"> UTENTI</button>
 						</a> 
@@ -70,7 +70,7 @@
 						<!-- TAGS -->
 						<div th:if="${ruolo == 'ADMIN'}" class="col-2">
 						<a th:href="@{/tags}">
-						<button class="btn btn-primary"><img width="25" height="25"
+						<button class="btn btn-primary  btn-lg"><img width="25" height="25"
 						src="https://image.flaticon.com/icons/png/512/902/902042.png"
 						class="loaded"> TAGS</button>
 						</a> 
@@ -79,7 +79,7 @@
 						<!-- LOGOUT -->
 						<div class="col-2">
 						<form th:action="@{/logout}" method="post">
-						<button class="btn btn-danger" type="submit"><img width="25" height="25"
+						<button class="btn btn-danger  btn-lg" type="submit"><img width="25" height="25"
 						src="https://image.flaticon.com/icons/svg/2699/2699261.svg"
 						class="loaded"> LOGOUT</button>
 						</form> 

@@ -1,9 +1,9 @@
-# COLLABORATORI PROGETTO siw-2020:
+# Collaboratori Progetto siw-2020
  + *Davide Mancino*
  + *Matteo Santini*
  
 
- [SPECIFICHE]
+ Specifiche
  ===
 - Utente:
 1.	Può visualizzare il suo profilo
